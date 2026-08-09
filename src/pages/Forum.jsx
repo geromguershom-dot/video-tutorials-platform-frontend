@@ -66,12 +66,15 @@ export default function Forum() {
 
   return (
     <div>
-      <h2>Forum Questions-Réponses</h2>
+      <h2>💬 Forum Questions-Réponses</h2>
+      <p style={{ color: '#94a3b8', marginTop: 6 }}>
+        Posez vos questions par matière et obtenez de l'aide de la communauté
+      </p>
 
       <select
         value={category}
         onChange={(e) => setCategory(e.target.value)}
-        style={{ maxWidth: 300, margin: '15px 0' }}
+        className="forum-category-select"
       >
         {categories.map((cat) => (
           <option key={cat._id} value={cat._id}>
@@ -82,7 +85,7 @@ export default function Forum() {
 
       {user && (
         <div className="card">
-          <h3>Poser une question</h3>
+          <h3 style={{ marginBottom: 10 }}>Poser une question</h3>
           <form onSubmit={handleAskQuestion}>
             <textarea
               rows={2}
@@ -99,29 +102,40 @@ export default function Forum() {
 
       <div style={{ marginTop: 20 }}>
         {questions.length === 0 ? (
-          <p>Aucune question pour cette matière.</p>
+          <p style={{ color: '#94a3b8' }}>Aucune question pour cette matière pour l'instant.</p>
         ) : (
           questions.map((q) => (
-            <div key={q._id} className="card">
-              <strong>{q.author?.name}</strong> <span className="tag">{q.author?.role}</span>
-              <p style={{ margin: '8px 0' }}>{q.content}</p>
-              <button className="btn" onClick={() => toggleAnswers(q._id)}>
+            <div key={q._id} className="card question-card">
+              <div className="comment-author-row">
+                <div className="avatar-circle small">{q.author?.name?.charAt(0)}</div>
+                <strong>{q.author?.name}</strong>
+                <span className="tag">{q.author?.role}</span>
+              </div>
+              <p className="question-content">{q.content}</p>
+              <button className="btn btn-outline" onClick={() => toggleAnswers(q._id)}>
                 {openQuestion === q._id ? 'Masquer' : 'Voir'} les réponses
               </button>
 
               {openQuestion === q._id && (
-                <div style={{ marginTop: 15, paddingLeft: 15, borderLeft: '3px solid #e2e8f0' }}>
+                <div className="answers-box">
                   {(answers[q._id] || []).map((a) => (
-                    <div key={a._id} style={{ marginBottom: 10 }}>
-                      <strong>{a.author?.name}</strong>{' '}
-                      <span className="tag">{a.author?.role}</span>
-                      <p>{a.content}</p>
+                    <div key={a._id} className="answer-item">
+                      <div className="comment-author-row">
+                        <div className="avatar-circle small">{a.author?.name?.charAt(0)}</div>
+                        <strong>{a.author?.name}</strong>
+                        <span className="tag">{a.author?.role}</span>
+                      </div>
+                      <p className="comment-content">{a.content}</p>
                     </div>
                   ))}
-                  {(answers[q._id] || []).length === 0 && <p>Aucune réponse pour l'instant.</p>}
+                  {(answers[q._id] || []).length === 0 && (
+                    <p style={{ color: '#94a3b8', fontSize: 13 }}>
+                      Aucune réponse pour l'instant.
+                    </p>
+                  )}
 
                   {user && (
-                    <div style={{ marginTop: 10 }}>
+                    <div style={{ marginTop: 12 }}>
                       <textarea
                         rows={2}
                         placeholder="Votre réponse..."

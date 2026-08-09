@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import api from '../services/api';
 import { useAuth } from '../context/AuthContext';
 
@@ -12,6 +12,7 @@ export default function VideoDetail() {
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState('');
   const [myRating, setMyRating] = useState(0);
+  const [hoverRating, setHoverRating] = useState(0);
 
   const fetchVideo = async () => {
     const res = await api.get(`/videos/${id}`);
@@ -58,67 +59,99 @@ export default function VideoDetail() {
     }
   };
 
-  if (!video) return <p>Chargement...</p>;
+  if (!video) return <p style={{ color: '#94a3b8' }}>Chargement...</p>;
 
   return (
-    <div>
-      <video
-        ref={videoRef}
-        src={video.videoUrl}
-        controls
-        onTimeUpdate={handleTimeUpdate}
-        style={{ width: '100%', maxHeight: 500, borderRadius: 10, background: '#000' }}
-      />
+    <div className="video-detail-layout">
+      <div className="video-detail-main">
+        <Link to="/" className="back-link">
+          ← Retour aux vidéos
+        </Link>
 
-      <h2 style={{ marginTop: 15 }}>{video.title}</h2>
-      <p style={{ color: '#666' }}>
-        Par {video.teacher?.name} · {video.category?.name} · 👁 {video.views} vues
-      </p>
-      <p style={{ marginTop: 10 }}>{video.description}</p>
+        <div className="video-player-wrap">
+          <video
+            ref={videoRef}
+            src={video.videoUrl}
+            controls
+            onTimeUpdate={handleTimeUpdate}
+            className="video-player"
+          />
+        </div>
 
-      <div style={{ margin: '15px 0' }}>
-        <strong>Noter cette vidéo :</strong>{' '}
-        {[1, 2, 3, 4, 5].map((star) => (
-          <span
-            key={star}
-            onClick={() => handleRating(star)}
-            style={{
-              cursor: 'pointer',
-              fontSize: 22,
-              color: star <= myRating ? '#f59e0b' : '#cbd5e1',
-            }}
-          >
-            ★
-          </span>
-        ))}{' '}
-        <span style={{ fontSize: 13, color: '#666' }}>
-          (Moyenne : {video.averageRating || 0}/5)
-        </span>
-      </div>
+        <h1 className="video-detail-title">{video.title}</h1>
 
-      <div className="card">
-        <h3>Commentaires ({comments.length})</h3>
-        {user && (
-          <form onSubmit={handleCommentSubmit} style={{ marginTop: 10 }}>
-            <textarea
-              rows={2}
-              placeholder="Ajouter un commentaire..."
-              value={newComment}
-              onChange={(e) => setNewComment(e.target.value)}
-            />
-            <button className="btn" type="submit">
-              Publier
-            </button>
-          </form>
-        )}
-        <div style={{ marginTop: 15 }}>
-          {comments.map((c) => (
-            <div key={c._id} style={{ borderBottom: '1px solid #eee', padding: '10px 0' }}>
-              <strong>{c.author?.name}</strong>{' '}
-              <span className="tag">{c.author?.role}</span>
-              <p>{c.content}</p>
+        <div className="video-detail-meta">
+          <div className="video-detail-author">
+            <div className="avatar-circle">{video.teacher?.name?.charAt(0)}</div>
+            <div>
+              <div className="user-name">{video.teacher?.name}</div>
+              <div className="user-role">{video.category?.name}</div>
             </div>
-          ))}
+          </div>
+          <div className="video-detail-stats">
+            <span>👁 {video.views} vues</span>
+          </div>
+        </div>
+
+        <div className="rating-box">
+          <span className="rating-label">Noter cette vidéo :</span>
+          <div className="stars">
+            {[1, 2, 3, 4, 5].map((star) => (
+              <span
+                key={star}
+                onClick={() => handleRating(star)}
+                onMouseEnter={() => setHoverRating(star)}
+                onMouseLeave={() => setHoverRating(0)}
+                className="star"
+                style={{
+                  color: star <= (hoverRating || myRating) ? '#f59e0b' : '#3d3a56',
+                }}
+              >
+                ★
+              </span>
+            ))}
+          </div>
+          <span className="rating-average">Moyenne : {video.averageRating || 0}/5</span>
+        </div>
+
+        <div className="card">
+          <p className="video-description">{video.description}</p>
+        </div>
+
+        <div className="card">
+          <h3 className="comments-title">💬 Commentaires ({comments.length})</h3>
+          {user && (
+            <form onSubmit={handleCommentSubmit} className="comment-form">
+              <textarea
+                rows={2}
+                placeholder="Ajouter un commentaire..."
+                value={newComment}
+                onChange={(e) => setNewComment(e.target.value)}
+              />
+              <button className="btn" type="submit">
+                Publier
+              </button>
+            </form>
+          )}
+          <div className="comments-list">
+            {comments.length === 0 && (
+              <p style={{ color: '#94a3b8', fontSize: 13 }}>
+                Aucun commentaire pour l'instant. Sois le premier !
+              </p>
+            )}
+            {comments.map((c) => (
+              <div key={c._id} className="comment-item">
+                <div className="avatar-circle small">{c.author?.name?.charAt(0)}</div>
+                <div style={{ flex: 1 }}>
+                  <div className="comment-author-row">
+                    <strong>{c.author?.name}</strong>
+                    <span className="tag">{c.author?.role}</span>
+                  </div>
+                  <p className="comment-content">{c.content}</p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>

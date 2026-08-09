@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import api from '../services/api';
 
 export default function Playlists() {
   const [playlists, setPlaylists] = useState([]);
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
+  const [showForm, setShowForm] = useState(false);
 
   const fetchPlaylists = async () => {
     const res = await api.get('/playlists');
@@ -22,6 +24,7 @@ export default function Playlists() {
       await api.post('/playlists', { title, description });
       setTitle('');
       setDescription('');
+      setShowForm(false);
       fetchPlaylists();
     } catch (err) {
       alert(err.response?.data?.message || 'Erreur');
@@ -30,45 +33,54 @@ export default function Playlists() {
 
   return (
     <div>
-      <h2>Mes Playlists</h2>
-
-      <div className="card" style={{ marginTop: 15 }}>
-        <h3>Créer une playlist</h3>
-        <form onSubmit={handleCreate}>
-          <input
-            type="text"
-            placeholder="Titre de la playlist"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-          />
-          <textarea
-            rows={2}
-            placeholder="Description (optionnel)"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-          />
-          <button className="btn" type="submit">
-            Créer
-          </button>
-        </form>
+      <div className="page-header-row">
+        <h2>📋 Mes Playlists</h2>
+        <button className="btn" onClick={() => setShowForm(!showForm)}>
+          {showForm ? 'Annuler' : '+ Nouvelle playlist'}
+        </button>
       </div>
 
-      <div style={{ marginTop: 20 }}>
+      {showForm && (
+        <div className="card" style={{ marginTop: 15 }}>
+          <form onSubmit={handleCreate}>
+            <input
+              type="text"
+              placeholder="Titre de la playlist"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+            />
+            <textarea
+              rows={2}
+              placeholder="Description (optionnel)"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+            />
+            <button className="btn" type="submit">
+              Créer
+            </button>
+          </form>
+        </div>
+      )}
+
+      <div className="playlist-grid">
         {playlists.length === 0 ? (
-          <p>Aucune playlist pour l'instant.</p>
+          <p style={{ color: '#94a3b8' }}>
+            Aucune playlist pour l'instant. Crée ta première playlist !
+          </p>
         ) : (
           playlists.map((pl) => (
-            <div key={pl._id} className="card">
+            <div key={pl._id} className="card playlist-card">
+              <div className="playlist-icon">📋</div>
               <h3>{pl.title}</h3>
-              <p style={{ color: '#666' }}>{pl.description}</p>
-              <p style={{ fontSize: 13, marginTop: 8 }}>
-                {pl.videos.length} vidéo(s)
-              </p>
-              {pl.videos.map((v) => (
-                <span key={v._id} className="tag">
-                  {v.title}
-                </span>
-              ))}
+              <p className="playlist-desc">{pl.description}</p>
+              <p className="playlist-count">{pl.videos.length} vidéo(s)</p>
+              <div className="playlist-videos">
+                {pl.videos.map((v) => (
+                  <Link to={`/video/${v._id}`} key={v._id} className="tag" style={{ textDecoration: 'none' }}>
+                    {v.title}
+                  </Link>
+                ))}
+              </div>
             </div>
           ))
         )}

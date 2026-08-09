@@ -1,92 +1,167 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import api from '../services/api';
+import { useAuth } from '../context/AuthContext';
 
 export default function Home() {
+  const { user } = useAuth();
   const [videos, setVideos] = useState([]);
   const [categories, setCategories] = useState([]);
-  const [search, setSearch] = useState('');
-  const [category, setCategory] = useState('');
+  const [progress, setProgress] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [selectedCategory, setSelectedCategory] = useState('');
 
-  const fetchVideos = async () => {
+  const fetchAll = async () => {
     setLoading(true);
     try {
-      const params = {};
-      if (search) params.search = search;
-      if (category) params.category = category;
-      const res = await api.get('/videos', { params });
-      setVideos(res.data);
+      const [videosRes, categoriesRes] = await Promise.all([
+        api.get('/videos', { params: selectedCategory ? { category: selectedCategory } : {} }),
+        api.get('/categories'),
+      ]);
+      setVideos(videosRes.data);
+      setCategories(categoriesRes.data);
+
+      if (user) {
+        const progressRes = await api.get('/progress');
+        setProgress(progressRes.data);
+      }
     } catch (err) {
       console.error(err);
     }
     setLoading(false);
   };
 
-  const fetchCategories = async () => {
-    try {
-      const res = await api.get('/categories');
-      setCategories(res.data);
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
   useEffect(() => {
-    fetchCategories();
-  }, []);
-
-  useEffect(() => {
-    fetchVideos();
-  }, [search, category]);
+    fetchAll();
+  }, [user, selectedCategory]);
 
   return (
     <div>
-      <h2>Vidéos disponibles</h2>
-
-      <div style={{ display: 'flex', gap: 10, margin: '15px 0' }}>
-        <input
-          type="text"
-          placeholder="Rechercher une vidéo..."
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-        />
-        <select value={category} onChange={(e) => setCategory(e.target.value)}>
-          <option value="">Toutes les catégories</option>
-          {categories.map((cat) => (
-            <option key={cat._id} value={cat._id}>
-              {cat.name}
-            </option>
-          ))}
-        </select>
+      {/* HERO */}
+      <div className="hero">
+        <div className="hero-content">
+          <span className="hero-badge">🎓 PLATEFORME D'APPRENTISSAGE</span>
+          <h1 className="hero-title">
+            Apprenez. Partagez.
+            <br />
+            <span className="hero-highlight">Progressez ensemble.</span>
+          </h1>
+          <p className="hero-subtitle">
+            Des vidéos de qualité, des enseignants passionnés, une communauté qui vous fait
+            grandir.
+          </p>
+          <div className="hero-actions">
+            <button
+              className="btn"
+              onClick={() =>
+                document.getElementById('videos-section').scrollIntoView({ behavior: 'smooth' })
+              }
+            >
+              ▶ Explorer les vidéos
+            </button>
+            <button
+              className="btn btn-outline"
+              onClick={() =>
+                document
+                  .getElementById('categories-section')
+                  .scrollIntoView({ behavior: 'smooth' })
+              }
+            >
+              ⊞ Voir les catégories
+            </button>
+          </div>
+        </div>
       </div>
 
-      {loading ? (
-        <p>Chargement...</p>
-      ) : videos.length === 0 ? (
-        <p>Aucune vidéo trouvée.</p>
-      ) : (
-        <div className="video-grid">
-          {videos.map((video) => (
-            <Link
-              to={`/video/${video._id}`}
-              key={video._id}
-              style={{ textDecoration: 'none', color: 'inherit' }}
-            >
-              <div className="card">
-                <img src={video.thumbnailUrl} alt={video.title} className="video-thumb" />
-                <h3 style={{ marginTop: 10 }}>{video.title}</h3>
-                <p style={{ fontSize: 13, color: '#666' }}>
-                  {video.teacher?.name} · {video.category?.name}
-                </p>
-                <p style={{ fontSize: 13 }}>
-                  ⭐ {video.averageRating || 0} · 👁 {video.views} vues
-                </p>
+      <div className="home-layout">
+        <div className="home-main">
+          {/* CATEGORIES */}
+          <div className="section-header" id="categories-section">
+            <h2>Catégories populaires</h2>
+          </div>
+          <div className="category-grid">
+            {categories.map((cat) => (
+              <div
+                key={cat._id}
+                className="category-card"
+                onClick={() =>
+                  setSelectedCategory(cat._id === selectedCategory ? '' : cat._id)
+                }
+                style={{
+                  borderColor: selectedCategory === cat._id ? '#7c3aed' : undefined,
+                }}
+              >
+                <div className="category-icon">📂</div>
+                <div className="category-name">{cat.name}</div>
               </div>
-            </Link>
-          ))}
+            ))}
+            {categories.length === 0 && (
+              <p style={{ color: '#94a3b8' }}>Aucune catégorie.</p>
+            )}
+          </div>
+
+          {/* VIDEOS */}
+          <div className="section-header" id="videos-section">
+            <h2>Vidéos populaires</h2>
+          </div>
+
+          {loading ? (
+            <p>Chargement...</p>
+          ) : videos.length === 0 ? (
+            <p style={{ color: '#94a3b8' }}>Aucune vidéo trouvée.</p>
+          ) : (
+            <div className="video-grid">
+              {videos.map((video) => (
+                <Link to={`/video/${video._id}`} key={video._id} className="video-card-link">
+                  <div className="video-card">
+                    <img src={video.thumbnailUrl} alt={video.title} className="video-thumb" />
+                    <div className="video-card-body">
+                      <h3 className="video-card-title">{video.title}</h3>
+                      <p className="video-card-meta">
+                        {video.teacher?.name} · {video.category?.name}
+                      </p>
+                      <p className="video-card-stats">
+                        ⭐ {video.averageRating || 0} · 👁 {video.views} vues
+                      </p>
+                    </div>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          )}
         </div>
-      )}
+
+        {/* SIDEBAR DROITE */}
+        {user && (
+          <div className="home-side">
+            <div className="side-card">
+              <h3>Ma progression</h3>
+              {progress.length === 0 ? (
+                <p style={{ color: '#94a3b8', fontSize: 13 }}>
+                  Regardez des vidéos pour suivre votre progression.
+                </p>
+              ) : (
+                progress.map((p) => {
+                  const percent = p.video?.duration
+                    ? Math.min(100, Math.round((p.watchedSeconds / p.video.duration) * 100))
+                    : 0;
+                  return (
+                    <div key={p._id} className="progress-item">
+                      <div className="progress-item-top">
+                        <span>{p.video?.title}</span>
+                        <span>{percent}%</span>
+                      </div>
+                      <div className="progress-bar-bg">
+                        <div className="progress-bar-fill" style={{ width: `${percent}%` }} />
+                      </div>
+                    </div>
+                  );
+                })
+              )}
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
 }
