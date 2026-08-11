@@ -35,10 +35,17 @@ export default function Home() {
     fetchAll();
   }, [user, selectedCategory]);
 
+  const trustPoints = [
+    { icon: '⭐', title: 'Cours de qualité', desc: 'Créés par des enseignants passionnés' },
+    { icon: '⏱', title: 'Apprentissage flexible', desc: 'Apprenez à votre rythme, où que vous soyez' },
+    { icon: '👥', title: 'Communauté active', desc: 'Posez vos questions et échangez entre vous' },
+    { icon: '📈', title: 'Suivi de progression', desc: 'Visualisez votre avancée à chaque instant' },
+  ];
+
   return (
     <div>
       {/* HERO */}
-      <div className="hero">
+      <div className="hero hero-with-image">
         <div className="hero-content">
           <span className="hero-badge">🎓 PLATEFORME D'APPRENTISSAGE</span>
           <h1 className="hero-title">
@@ -71,6 +78,22 @@ export default function Home() {
             </button>
           </div>
         </div>
+        <div className="hero-illustration">
+          <div className="hero-illustration-circle">🎬</div>
+        </div>
+      </div>
+
+      {/* TRUST POINTS */}
+      <div className="trust-row">
+        {trustPoints.map((tp) => (
+          <div className="trust-item" key={tp.title}>
+            <div className="trust-icon">{tp.icon}</div>
+            <div>
+              <div className="trust-title">{tp.title}</div>
+              <div className="trust-desc">{tp.desc}</div>
+            </div>
+          </div>
+        ))}
       </div>
 
       <div className="home-layout">

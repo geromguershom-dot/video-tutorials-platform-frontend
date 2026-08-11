@@ -13,6 +13,7 @@ export default function VideoDetail() {
   const [newComment, setNewComment] = useState('');
   const [myRating, setMyRating] = useState(0);
   const [hoverRating, setHoverRating] = useState(0);
+  const [playlistContext, setPlaylistContext] = useState(null);
 
   const fetchVideo = async () => {
     const res = await api.get(`/videos/${id}`);
@@ -24,10 +25,25 @@ export default function VideoDetail() {
     setComments(res.data);
   };
 
+  const fetchPlaylistContext = async () => {
+    if (!user) {
+      setPlaylistContext(null);
+      return;
+    }
+    try {
+      const res = await api.get('/playlists');
+      const match = res.data.find((pl) => pl.videos.some((v) => v._id === id));
+      setPlaylistContext(match || null);
+    } catch (err) {
+      setPlaylistContext(null);
+    }
+  };
+
   useEffect(() => {
     fetchVideo();
     fetchComments();
-  }, [id]);
+    fetchPlaylistContext();
+  }, [id, user]);
 
   const handleCommentSubmit = async (e) => {
     e.preventDefault();
@@ -154,6 +170,42 @@ export default function VideoDetail() {
           </div>
         </div>
       </div>
+
+      {playlistContext && (
+        <div className="video-detail-side">
+          <div className="side-card playlist-sommaire">
+            <h3>📋 {playlistContext.title}</h3>
+            <p className="playlist-sommaire-count">
+              {playlistContext.videos.length} vidéo(s) dans cette playlist
+            </p>
+            <div className="playlist-sommaire-list">
+              {playlistContext.videos.map((v, index) => (
+                <Link
+                  to={`/video/${v._id}`}
+                  key={v._id}
+                  className={`playlist-sommaire-item ${v._id === id ? 'current' : ''}`}
+                >
+                  <span className="playlist-sommaire-number">{index + 1}</span>
+                  <img
+                    src={v.thumbnailUrl}
+                    alt={v.title}
+                    className="playlist-sommaire-thumb"
+                  />
+                  <div>
+                    <div className="playlist-sommaire-title">{v.title}</div>
+                    {v.duration && (
+                      <div className="playlist-sommaire-duration">
+                        {Math.floor(v.duration / 60)}:
+                        {String(Math.floor(v.duration % 60)).padStart(2, '0')}
+                      </div>
+                    )}
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
