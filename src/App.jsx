@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 import Sidebar from './components/Sidebar';
 import Topbar from './components/Topbar';
@@ -9,10 +9,19 @@ import VideoDetail from './pages/VideoDetail';
 import Upload from './pages/Upload';
 import Playlists from './pages/Playlists';
 import Forum from './pages/Forum';
+import ScrollCharacter, { FloatingLetters } from './components/ScrollCharacter';
 
 function Layout({ children }) {
+  const location = useLocation();
+  const characterVariant = ['/forum', '/playlists'].includes(location.pathname) ? 'student' : 'teacher';
+
   return (
     <div className="app-shell">
+      <FloatingLetters />
+      <ScrollCharacter
+        variant={characterVariant}
+        label={`Illustration animée ${characterVariant === 'teacher' ? 'd’un enseignant' : 'd’une étudiante'}`}
+      />
       <Sidebar />
       <div className="main-area">
         <Topbar />

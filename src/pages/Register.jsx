@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import api from '../services/api';
 import { useAuth } from '../context/AuthContext';
+import ScrollCharacter, { FloatingLetters } from '../components/ScrollCharacter';
 
 export default function Register() {
   const [name, setName] = useState('');
@@ -29,6 +30,8 @@ export default function Register() {
 
   return (
     <div className="auth-page">
+      <FloatingLetters />
+      <ScrollCharacter variant="student" label="Illustration animée d’une étudiante" />
       <div className="auth-box">
         <div className="auth-logo">
           <span className="logo-icon">▶</span> DevLearn
