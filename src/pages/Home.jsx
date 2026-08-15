@@ -9,10 +9,12 @@ export default function Home() {
   const [categories, setCategories] = useState([]);
   const [progress, setProgress] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('');
 
   const fetchAll = async () => {
     setLoading(true);
+    setError('');
     try {
       const [videosRes, categoriesRes] = await Promise.all([
         api.get('/videos', { params: selectedCategory ? { category: selectedCategory } : {} }),
@@ -27,8 +29,10 @@ export default function Home() {
       }
     } catch (err) {
       console.error(err);
+      setError(err.userMessage || err.response?.data?.message || 'Impossible de charger les contenus pour le moment.');
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   };
 
   useEffect(() => {
@@ -129,7 +133,15 @@ export default function Home() {
           </div>
 
           {loading ? (
-            <p>Chargement...</p>
+            <div className="video-grid" aria-label="Chargement des vidéos">
+              {[1, 2, 3].map((item) => <div className="video-card skeleton-card" key={item} />)}
+            </div>
+          ) : error ? (
+            <div className="card connection-state">
+              <strong>Connexion temporairement indisponible</strong>
+              <p>{error}</p>
+              <button className="btn" type="button" onClick={fetchAll}>Réessayer</button>
+            </div>
           ) : videos.length === 0 ? (
             <p style={{ color: '#94a3b8' }}>Aucune vidéo trouvée.</p>
           ) : (
