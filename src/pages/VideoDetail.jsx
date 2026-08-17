@@ -84,6 +84,7 @@ export default function VideoDetail() {
           ← Retour aux vidéos
         </Link>
 
+        <div className="video-detail-eyebrow"><span className="eyebrow-dot" /> COURS DEVLEARN <span className="eyebrow-line" /></div>
         <div className="video-player-wrap">
           <video
             ref={videoRef}
@@ -94,7 +95,13 @@ export default function VideoDetail() {
           />
         </div>
 
-        <h1 className="video-detail-title">{video.title}</h1>
+        <div className="video-detail-heading">
+          <div>
+            <h1 className="video-detail-title">{video.title}</h1>
+            <p className="video-detail-lead">Une leçon claire, pratique et conçue pour progresser à ton rythme.</p>
+          </div>
+          <span className="course-status-chip">● Disponible</span>
+        </div>
 
         <div className="video-detail-meta">
           <div className="video-detail-author">
@@ -107,6 +114,12 @@ export default function VideoDetail() {
           <div className="video-detail-stats">
             <span>👁 {video.views} vues</span>
           </div>
+        </div>
+
+        <div className="video-detail-insights">
+          <span><strong>{video.category?.name || 'Formation'}</strong><small>Catégorie</small></span>
+          <span><strong>{video.duration ? `${Math.ceil(video.duration / 60)} min` : '—'}</strong><small>Durée estimée</small></span>
+          <span><strong>{video.averageRating || 'Nouveau'}</strong><small>Évaluation</small></span>
         </div>
 
         <div className="rating-box">

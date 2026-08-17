@@ -46,8 +46,10 @@ export default function Home() {
     { icon: '📈', title: 'Suivi de progression', desc: 'Visualisez votre avancée à chaque instant' },
   ];
 
+  const getProgressForVideo = (videoId) => progress.find((item) => item.video?._id === videoId);
+
   return (
-    <div>
+    <div className="home-page">
       {/* HERO */}
       <div className="hero hero-with-image">
         <div className="hero-content">
@@ -83,7 +85,17 @@ export default function Home() {
           </div>
         </div>
         <div className="hero-illustration">
-          <div className="hero-illustration-circle">🎬</div>
+          <div className="hero-orbit orbit-one" />
+          <div className="hero-orbit orbit-two" />
+          <div className="hero-illustration-circle">▶</div>
+          <div className="hero-floating-card hero-floating-card-top">
+            <span className="floating-card-icon">✦</span>
+            <span><strong>Apprentissage actif</strong><small>Une communauté qui progresse</small></span>
+          </div>
+          <div className="hero-floating-card hero-floating-card-bottom">
+            <span className="floating-card-icon progress-pulse">↗</span>
+            <span><strong>+24 % cette semaine</strong><small>Progression moyenne</small></span>
+          </div>
         </div>
       </div>
 
@@ -110,12 +122,12 @@ export default function Home() {
             {categories.map((cat) => (
               <div
                 key={cat._id}
-                className="category-card"
+                className={`category-card ${selectedCategory === cat._id ? 'is-selected' : ''}`}
                 onClick={() =>
                   setSelectedCategory(cat._id === selectedCategory ? '' : cat._id)
                 }
                 style={{
-                  borderColor: selectedCategory === cat._id ? '#7c3aed' : undefined,
+                  borderColor: selectedCategory === cat._id ? '#34d399' : undefined,
                 }}
               >
                 <div className="category-icon">📂</div>
@@ -149,15 +161,27 @@ export default function Home() {
               {videos.map((video) => (
                 <Link to={`/video/${video._id}`} key={video._id} className="video-card-link">
                   <div className="video-card">
-                    <img src={video.thumbnailUrl} alt={video.title} className="video-thumb" />
+                    <div className="video-thumb-wrap">
+                      <img src={video.thumbnailUrl} alt={video.title} className="video-thumb" />
+                      <span className="video-play-chip">▶</span>
+                      <span className="video-level-chip">{video.level || 'Cours'}</span>
+                    </div>
                     <div className="video-card-body">
+                      <div className="video-card-kicker"><span>{video.category?.name || 'Formation'}</span><span>{video.duration ? `${Math.ceil(video.duration / 60)} min` : 'Vidéo'}</span></div>
                       <h3 className="video-card-title">{video.title}</h3>
                       <p className="video-card-meta">
                         {video.teacher?.name} · {video.category?.name}
                       </p>
                       <p className="video-card-stats">
-                        ⭐ {video.averageRating || 0} · 👁 {video.views} vues
+                        ⭐ {video.averageRating || 0} · 👁 {video.views || 0} vues
                       </p>
+                      {user && getProgressForVideo(video._id) && (
+                        <div className="video-card-progress" aria-label="Progression du cours">
+                          <span>Progression</span>
+                          <span>{Math.min(100, Math.round((getProgressForVideo(video._id).watchedSeconds / (video.duration || 1)) * 100))}%</span>
+                          <div className="progress-bar-bg"><div className="progress-bar-fill" style={{ width: `${Math.min(100, Math.round((getProgressForVideo(video._id).watchedSeconds / (video.duration || 1)) * 100))}%` }} /></div>
+                        </div>
+                      )}
                     </div>
                   </div>
                 </Link>
