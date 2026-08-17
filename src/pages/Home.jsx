@@ -54,15 +54,14 @@ export default function Home() {
       {/* HERO */}
       <div className="hero hero-with-image">
         <div className="hero-content">
-          <span className="hero-badge">🎓 PLATEFORME D'APPRENTISSAGE</span>
+          <span className="hero-badge">{user?.role === 'teacher' ? '✦ ESPACE CRÉATEUR' : '🎓 PLATEFORME D\'APPRENTISSAGE'}</span>
           <h1 className="hero-title">
-            Apprenez. Partagez.
+            {user?.role === 'teacher' ? 'Partagez. Enseignez.' : 'Apprenez. Partagez.'}
             <br />
-            <span className="hero-highlight">Progressez ensemble.</span>
+            <span className="hero-highlight">{user?.role === 'teacher' ? 'Inspirez une communauté.' : 'Progressez ensemble.'}</span>
           </h1>
           <p className="hero-subtitle">
-            Des vidéos de qualité, des enseignants passionnés, une communauté qui vous fait
-            grandir.
+            {user?.role === 'teacher' ? 'Publiez vos connaissances, accompagnez vos étudiants et mesurez l’impact de vos tutoriels.' : 'Des vidéos de qualité, des enseignants passionnés, une communauté qui vous fait grandir.'}
           </p>
           <div className="hero-actions">
             <button
@@ -71,9 +70,9 @@ export default function Home() {
                 document.getElementById('videos-section').scrollIntoView({ behavior: 'smooth' })
               }
             >
-              ▶ Explorer les vidéos
+              {user?.role === 'teacher' ? '⬆ Publier un tutoriel' : '▶ Explorer les vidéos'}
             </button>
-            <button
+            {user?.role === 'teacher' ? <Link className="btn btn-outline" to="/upload">📊 Voir mon espace</Link> : <button
               className="btn btn-outline"
               onClick={() =>
                 document
@@ -82,7 +81,7 @@ export default function Home() {
               }
             >
               ⊞ Voir les catégories
-            </button>
+            </button>}
           </div>
         </div>
         <div className="hero-illustration">

@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
-import { AuthProvider } from './context/AuthContext';
+import { AuthProvider, useAuth } from './context/AuthContext';
 import Sidebar from './components/Sidebar';
 import Topbar from './components/Topbar';
 import Login from './pages/Login';
@@ -14,10 +14,12 @@ import ScrollCharacter, { FloatingLetters } from './components/ScrollCharacter';
 
 function Layout({ children }) {
   const location = useLocation();
+  const { user } = useAuth();
+  const roleClass = user?.role === 'teacher' || user?.role === 'admin' ? 'role-teacher' : user ? 'role-student' : 'role-guest';
   const characterVariant = ['/forum', '/playlists'].includes(location.pathname) ? 'student' : 'teacher';
 
   return (
-    <div className="app-shell">
+    <div className={`app-shell ${roleClass}`}>
       <FloatingLetters />
       <ScrollCharacter
         variant={characterVariant}

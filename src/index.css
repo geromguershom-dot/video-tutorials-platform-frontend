@@ -1398,3 +1398,21 @@ input:focus, textarea:focus, select:focus { border-color: var(--brand); box-shad
 .accepted-answer { flex: 0 0 auto; padding: 4px 7px; border: 1px solid rgba(141,242,197,.28); border-radius: 999px; color: #8df2c5; font-size: 9px; font-weight: 900; text-transform: uppercase; }
 .accept-answer-btn { margin-top: 7px; padding: 5px 8px; border: 1px solid rgba(123,176,255,.25); border-radius: 7px; color: #9dc7ff; font-size: 10px; cursor: pointer; background: transparent; }
 .accept-answer-btn:hover { border-color: #8df2c5; color: #8df2c5; }
+
+/* ROLE-BASED EXPERIENCE */
+.role-teacher { --role-accent: #c9a7ff; --role-accent-soft: rgba(201,167,255,.13); --role-glow: rgba(201,167,255,.2); }
+.role-student { --role-accent: #8df2c5; --role-accent-soft: rgba(141,242,197,.12); --role-glow: rgba(141,242,197,.18); }
+.role-guest { --role-accent: #8dbbff; --role-accent-soft: rgba(141,187,255,.12); --role-glow: rgba(141,187,255,.18); }
+.role-teacher .sidebar-logo { text-shadow: 0 0 22px rgba(201,167,255,.25); }
+.role-teacher .sidebar-logo .logo-icon { color: #c9a7ff; }
+.role-teacher .sidebar-link.active { border-color: rgba(201,167,255,.35); background: linear-gradient(90deg, rgba(201,167,255,.2), rgba(141,187,255,.1)); }
+.role-teacher .sidebar-section-title { color: #c9a7ff; }
+.role-teacher .avatar-circle { border-color: rgba(201,167,255,.4); background: rgba(201,167,255,.13); }
+.role-student .avatar-circle { border-color: rgba(141,242,197,.4); background: rgba(141,242,197,.13); }
+.role-pill { display: inline-flex; align-items: center; padding: 3px 7px; border-radius: 999px; color: var(--role-accent); background: var(--role-accent-soft); font-size: 9px; font-weight: 900; letter-spacing: .07em; text-transform: uppercase; }
+.role-context { display: block; margin-top: 3px; color: #8194ac; font-size: 9px; }
+.topbar-user-teacher .user-name { color: #efe8ff; }
+.topbar-user-student .user-name { color: #e7fff5; }
+.role-teacher .btn:not(.btn-danger) { box-shadow: 0 8px 22px rgba(201,167,255,.12); }
+.role-teacher .dashboard-hero, .role-teacher .playlists-hero { border-color: rgba(201,167,255,.2); }
+@media (max-width: 650px) { .role-context { display: none; } }

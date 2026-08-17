@@ -21,12 +21,13 @@ export default function Topbar() {
       <div className="topbar-right">
         {user ? (
           <>
-            <div className="topbar-user">
+            <div className={`topbar-user topbar-user-${user.role}`}>
               <div className="avatar-circle">{user.name.charAt(0)}</div>
               <div>
                 <div className="user-name">{user.name}</div>
                 <div className="user-role">
-                  {user.role === 'teacher' ? 'Enseignant' : user.role === 'admin' ? 'Admin' : 'Étudiant'}
+                  <span className="role-pill">{user.role === 'teacher' ? 'Enseignant' : user.role === 'admin' ? 'Admin' : 'Étudiant'}</span>
+                  <span className="role-context">{user.role === 'teacher' ? 'Espace créateur' : user.role === 'admin' ? 'Espace gestion' : 'Espace apprentissage'}</span>
                 </div>
               </div>
             </div>
