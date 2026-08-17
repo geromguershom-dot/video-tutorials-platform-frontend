@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import api from '../services/api';
+import { useAuth } from '../context/AuthContext';
 
 export default function Playlists() {
+  const { user } = useAuth();
   const [playlists, setPlaylists] = useState([]);
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
@@ -32,6 +34,8 @@ export default function Playlists() {
   };
 
   const totalVideos = playlists.reduce((total, playlist) => total + playlist.videos.length, 0);
+
+  if (user?.role !== 'student') return <Navigate to={user ? '/upload' : '/login'} replace />;
 
   return (
     <div className="playlists-page">
