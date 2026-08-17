@@ -9,7 +9,7 @@ export default function Sidebar() {
 
   const links = [
     { to: '/', label: 'Accueil', icon: '🏠' },
-    ...(user ? [{ to: '/dashboard', label: 'Mon parcours', icon: '📊' }] : []),
+    ...(user?.role === 'student' ? [{ to: '/dashboard', label: 'Mon parcours', icon: '📊' }] : []),
     { to: '/playlists', label: 'Playlists', icon: '📋' },
     { to: '/forum', label: 'Forum Q&A', icon: '💬' },
   ];

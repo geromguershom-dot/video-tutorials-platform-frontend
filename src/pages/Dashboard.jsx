@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import api from '../services/api';
 import { useAuth } from '../context/AuthContext';
 
@@ -39,6 +39,10 @@ export default function Dashboard() {
 
   if (!user) {
     return <div className="empty-state-card"><span className="empty-state-icon">🔐</span><h2>Connecte-toi pour voir ton tableau de bord</h2><Link className="btn" to="/login">Se connecter</Link></div>;
+  }
+
+  if (user.role !== 'student') {
+    return <Navigate to="/upload" replace />;
   }
 
   return (
