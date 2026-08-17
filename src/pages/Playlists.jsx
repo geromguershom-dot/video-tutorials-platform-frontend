@@ -31,10 +31,20 @@ export default function Playlists() {
     }
   };
 
+  const totalVideos = playlists.reduce((total, playlist) => total + playlist.videos.length, 0);
+
   return (
-    <div>
+    <div className="playlists-page">
+      <div className="playlists-hero">
+        <div>
+          <span className="hero-badge">MON PARCOURS</span>
+          <h2>Organise ton apprentissage.</h2>
+          <p>Regroupe tes tutoriels préférés et construis un parcours qui te ressemble.</p>
+        </div>
+        <div className="playlist-hero-count"><strong>{totalVideos}</strong><span>vidéos<br />à découvrir</span></div>
+      </div>
       <div className="page-header-row">
-        <h2>📋 Mes Playlists</h2>
+        <div><h2>📋 Mes Playlists</h2><p className="page-helper">Des parcours courts pour apprendre avec intention.</p></div>
         <button className="btn" onClick={() => setShowForm(!showForm)}>
           {showForm ? 'Annuler' : '+ Nouvelle playlist'}
         </button>
@@ -70,10 +80,10 @@ export default function Playlists() {
         ) : (
           playlists.map((pl) => (
             <div key={pl._id} className="card playlist-card">
-              <div className="playlist-icon">📋</div>
+              <div className="playlist-card-head"><div className="playlist-icon">📋</div><span className="playlist-status">PRÊT À APPRENDRE</span></div>
               <h3>{pl.title}</h3>
               <p className="playlist-desc">{pl.description}</p>
-              <p className="playlist-count">{pl.videos.length} vidéo(s)</p>
+              <p className="playlist-count"><strong>{pl.videos.length}</strong> vidéo(s) dans ce parcours</p>
               <div className="playlist-videos">
                 {pl.videos.map((v) => (
                   <Link to={`/video/${v._id}`} key={v._id} className="tag" style={{ textDecoration: 'none' }}>

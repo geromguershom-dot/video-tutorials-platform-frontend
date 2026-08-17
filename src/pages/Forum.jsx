@@ -65,23 +65,35 @@ export default function Forum() {
   };
 
   return (
-    <div>
-      <h2>💬 Forum Questions-Réponses</h2>
-      <p style={{ color: '#94a3b8', marginTop: 6 }}>
-        Posez vos questions par matière et obtenez de l'aide de la communauté
-      </p>
+    <div className="forum-page">
+      <div className="forum-hero">
+        <div>
+          <span className="hero-badge">COMMUNAUTÉ DEVLEARN</span>
+          <h2>💬 Apprendre ensemble, progresser plus vite.</h2>
+          <p>Pose une question, partage une méthode et profite de l’expérience des enseignants.</p>
+        </div>
+        <div className="forum-hero-mark">Q<span>&amp;</span>A</div>
+      </div>
+      <div className="forum-stat-row">
+        <span><strong>{questions.length}</strong><small>Questions dans cette matière</small></span>
+        <span><strong>{categories.length}</strong><small>Matières disponibles</small></span>
+        <span><strong>24 h</strong><small>Pour obtenir de l’aide</small></span>
+      </div>
 
-      <select
+      <div className="forum-filter-row">
+        <span className="filter-label">Explorer une matière</span>
+        <select
         value={category}
         onChange={(e) => setCategory(e.target.value)}
-        className="forum-category-select"
-      >
+          className="forum-category-select"
+        >
         {categories.map((cat) => (
           <option key={cat._id} value={cat._id}>
             {cat.name}
           </option>
         ))}
-      </select>
+        </select>
+      </div>
 
       {user && (
         <div className="card">
@@ -106,17 +118,23 @@ export default function Forum() {
         ) : (
           questions.map((q) => (
             <div key={q._id} className="card question-card">
+              <div className="question-card-topline"><span className="question-topic">Question ouverte</span><span>● active</span></div>
               <div className="comment-author-row">
                 <div className="avatar-circle small">{q.author?.name?.charAt(0)}</div>
                 <strong>{q.author?.name}</strong>
                 <span className="tag">{q.author?.role}</span>
               </div>
               <p className="question-content">{q.content}</p>
-              <button className="btn btn-outline" onClick={() => toggleAnswers(q._id)}>
+              <div className="question-card-actions">
+                <span className="question-replies">{(answers[q._id] || []).length} réponse(s)</span>
+                <button className="btn btn-outline" onClick={() => toggleAnswers(q._id)}>
                 {openQuestion === q._id ? 'Masquer' : 'Voir'} les réponses
               </button>
 
+                              </div>
+
               {openQuestion === q._id && (
+
                 <div className="answers-box">
                   {(answers[q._id] || []).map((a) => (
                     <div key={a._id} className="answer-item">
