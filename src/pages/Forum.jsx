@@ -53,6 +53,16 @@ export default function Forum() {
 
   const visibleCategories = categories.filter((cat, index, list) => index === list.findIndex((item) => item.name.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase() === cat.name.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase()));
 
+  const handleAcceptAnswer = async (answerId, questionId) => {
+    try {
+      await api.put(`/comments/answers/${answerId}/accept`);
+      const res = await api.get(`/comments/answers/${questionId}`);
+      setAnswers((prev) => ({ ...prev, [questionId]: res.data }));
+    } catch (err) {
+      alert(err.response?.data?.message || 'Impossible de valider cette réponse');
+    }
+  };
+
   const handleAnswerSubmit = async (questionId) => {
     const content = newAnswer[questionId];
     if (!content?.trim()) return;
@@ -145,7 +155,8 @@ export default function Forum() {
                         <strong>{a.author?.name}</strong>
                         <span className="tag">{a.author?.role}</span>
                       </div>
-                      <p className="comment-content">{a.content}</p>
+                      <div className="answer-content-row"><p className="comment-content">{a.content}</p>{a.accepted && <span className="accepted-answer">✓ Réponse acceptée</span>}</div>
+                      {user && (q.author?._id === user._id || user.role === 'admin') && !a.accepted && <button className="accept-answer-btn" onClick={() => handleAcceptAnswer(a._id, q._id)}>Valider cette réponse</button>}
                     </div>
                   ))}
                   {(answers[q._id] || []).length === 0 && (

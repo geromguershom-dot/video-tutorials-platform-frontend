@@ -5,6 +5,7 @@ import Topbar from './components/Topbar';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Home from './pages/Home';
+import Dashboard from './pages/Dashboard';
 import VideoDetail from './pages/VideoDetail';
 import Upload from './pages/Upload';
 import Playlists from './pages/Playlists';
@@ -38,6 +39,14 @@ function App() {
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route
+            path="/dashboard"
+            element={
+              <Layout>
+                <Dashboard />
+              </Layout>
+            }
+          />
           <Route
             path="/"
             element={

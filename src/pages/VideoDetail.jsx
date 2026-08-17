@@ -3,6 +3,13 @@ import { useParams, Link } from 'react-router-dom';
 import api from '../services/api';
 import { useAuth } from '../context/AuthContext';
 
+const QUIZZES = [
+  { match: 'HTML', questions: [{ prompt: 'Quel langage structure le contenu d’une page web ?', options: ['HTML', 'CSS', 'SQL'], answer: 'HTML' }, { prompt: 'Quel outil est principalement utilisé pour styliser une page ?', options: ['CSS', 'Node.js', 'MongoDB'], answer: 'CSS' }] },
+  { match: 'JavaScript', questions: [{ prompt: 'Quel mot-clé déclare une variable constante ?', options: ['const', 'fixed', 'define'], answer: 'const' }, { prompt: 'JavaScript permet principalement de rendre une interface…', options: ['Interactive', 'Imprimable uniquement', 'Invisible'], answer: 'Interactive' }] },
+  { match: 'équations', questions: [{ prompt: 'Quelle opération annule une addition ?', options: ['La soustraction', 'La multiplication', 'La division'], answer: 'La soustraction' }] },
+  { match: 'conversation', questions: [{ prompt: 'Quelle formule est adaptée pour commencer une conversation ?', options: ['Hello, how are you?', 'Close the window.', 'Compile the code.'], answer: 'Hello, how are you?' }] },
+];
+
 export default function VideoDetail() {
   const { id } = useParams();
   const { user } = useAuth();
@@ -14,6 +21,8 @@ export default function VideoDetail() {
   const [myRating, setMyRating] = useState(0);
   const [hoverRating, setHoverRating] = useState(0);
   const [playlistContext, setPlaylistContext] = useState(null);
+  const [quizAnswers, setQuizAnswers] = useState({});
+  const [quizSubmitted, setQuizSubmitted] = useState(false);
 
   const fetchVideo = async () => {
     const res = await api.get(`/videos/${id}`);
@@ -66,6 +75,14 @@ export default function VideoDetail() {
       alert(err.response?.data?.message || 'Erreur');
     }
   };
+
+  const handleQuizSubmit = (event) => {
+    event.preventDefault();
+    setQuizSubmitted(true);
+  };
+
+  const activeQuiz = QUIZZES.find((item) => video?.title?.includes(item.match));
+  const quizScore = activeQuiz ? activeQuiz.questions.reduce((score, question, index) => score + (quizAnswers[index] === question.answer ? 1 : 0), 0) : 0;
 
   const handleTimeUpdate = () => {
     if (!user || !videoRef.current) return;
@@ -146,6 +163,23 @@ export default function VideoDetail() {
         <div className="card">
           <p className="video-description">{video.description}</p>
         </div>
+
+        {activeQuiz && (
+          <div className="card quiz-card">
+            <div className="quiz-heading"><div><span className="eyebrow">VÉRIFIE TES ACQUIS</span><h3>🧠 Mini-quiz du cours</h3></div><span className="quiz-progress">{activeQuiz.questions.length} questions</span></div>
+            <p className="quiz-intro">Réponds aux questions pour consolider ce que tu viens d’apprendre.</p>
+            <form onSubmit={handleQuizSubmit}>
+              {activeQuiz.questions.map((question, index) => (
+                <fieldset className="quiz-question" key={question.prompt}>
+                  <legend>{index + 1}. {question.prompt}</legend>
+                  <div className="quiz-options">{question.options.map((option) => <label className={`quiz-option ${quizAnswers[index] === option ? 'selected' : ''}`} key={option}><input type="radio" name={`question-${index}`} value={option} checked={quizAnswers[index] === option} onChange={() => { setQuizAnswers((current) => ({ ...current, [index]: option })); setQuizSubmitted(false); }} /> <span>{option}</span></label>)}</div>
+                </fieldset>
+              ))}
+              <button className="btn" type="submit" disabled={Object.keys(quizAnswers).length < activeQuiz.questions.length}>Valider mes réponses</button>
+            </form>
+            {quizSubmitted && <div className={`quiz-result ${quizScore === activeQuiz.questions.length ? 'perfect' : ''}`}><strong>{quizScore}/{activeQuiz.questions.length}</strong><span>{quizScore === activeQuiz.questions.length ? 'Excellent ! Tu maîtrises les notions clés.' : 'Bien joué. Revois les notions indiquées et réessaie.'}</span></div>}
+          </div>
+        )}
 
         <div className="card">
           <h3 className="comments-title">💬 Commentaires ({comments.length})</h3>
