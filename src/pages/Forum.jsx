@@ -51,6 +51,8 @@ export default function Forum() {
     setAnswers((prev) => ({ ...prev, [questionId]: res.data }));
   };
 
+  const visibleCategories = categories.filter((cat, index, list) => index === list.findIndex((item) => item.name.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase() === cat.name.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase()));
+
   const handleAnswerSubmit = async (questionId) => {
     const content = newAnswer[questionId];
     if (!content?.trim()) return;
@@ -76,7 +78,7 @@ export default function Forum() {
       </div>
       <div className="forum-stat-row">
         <span><strong>{questions.length}</strong><small>Questions dans cette matière</small></span>
-        <span><strong>{categories.length}</strong><small>Matières disponibles</small></span>
+        <span><strong>{visibleCategories.length}</strong><small>Matières disponibles</small></span>
         <span><strong>24 h</strong><small>Pour obtenir de l’aide</small></span>
       </div>
 
@@ -87,7 +89,7 @@ export default function Forum() {
         onChange={(e) => setCategory(e.target.value)}
           className="forum-category-select"
         >
-        {categories.map((cat) => (
+        {visibleCategories.map((cat) => (
           <option key={cat._id} value={cat._id}>
             {cat.name}
           </option>

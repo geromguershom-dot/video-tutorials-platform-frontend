@@ -47,6 +47,7 @@ export default function Home() {
   ];
 
   const getProgressForVideo = (videoId) => progress.find((item) => item.video?._id === videoId);
+  const visibleCategories = categories.filter((cat, index, list) => index === list.findIndex((item) => item.name.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase() === cat.name.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase()));
 
   return (
     <div className="home-page">
@@ -119,7 +120,7 @@ export default function Home() {
             <h2>Catégories populaires</h2>
           </div>
           <div className="category-grid">
-            {categories.map((cat) => (
+            {visibleCategories.map((cat) => (
               <div
                 key={cat._id}
                 className={`category-card ${selectedCategory === cat._id ? 'is-selected' : ''}`}
