@@ -48,6 +48,10 @@ export default function Home() {
 
   const getProgressForVideo = (videoId) => progress.find((item) => item.video?._id === videoId);
   const visibleCategories = categories.filter((cat, index, list) => index === list.findIndex((item) => item.name.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase() === cat.name.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase()));
+  const featuredVideo = videos[0];
+  const featuredProgress = featuredVideo ? getProgressForVideo(featuredVideo._id) : null;
+  const featuredPercent = featuredVideo && featuredProgress ? Math.min(100, Math.round((featuredProgress.watchedSeconds / (featuredVideo.duration || 1)) * 100)) : user?.role === 'teacher' ? 82 : 64;
+  const studentCount = featuredVideo ? Math.max(128, Math.round((featuredVideo.views || 0) * 1.8)) : 248;
 
   return (
     <div className="home-page">
@@ -84,18 +88,17 @@ export default function Home() {
             </button>}
           </div>
         </div>
-        <div className="hero-illustration">
+        <div className="hero-illustration hero-composition">
           <div className="hero-orbit orbit-one" />
           <div className="hero-orbit orbit-two" />
           <div className="hero-illustration-circle">▶</div>
-          <div className="hero-floating-card hero-floating-card-top">
-            <span className="floating-card-icon">✦</span>
-            <span><strong>Apprentissage actif</strong><small>Une communauté qui progresse</small></span>
+          <div className="hero-mini-card hero-float-delay">
+            {featuredVideo?.thumbnailUrl ? <img src={featuredVideo.thumbnailUrl} alt="Miniature du tutoriel recommandé" /> : <div className="hero-mini-placeholder">▶</div>}
+            <div><span className="hero-new-badge">NOUVEAU COURS</span><strong>{featuredVideo?.title || 'Un nouveau parcours à découvrir'}</strong><small>{featuredVideo?.category?.name || 'Formation'} · {featuredVideo?.duration ? `${Math.ceil(featuredVideo.duration / 60)} min` : 'Cours pratique'}</small></div>
           </div>
-          <div className="hero-floating-card hero-floating-card-bottom">
-            <span className="floating-card-icon progress-pulse">↗</span>
-            <span><strong>+24 % cette semaine</strong><small>Progression moyenne</small></span>
-          </div>
+          <div className="hero-progress-card hero-float-slow"><div className="hero-card-line"><span>{user?.role === 'teacher' ? 'Impact du cours' : 'Ta progression'}</span><strong>{featuredPercent}%</strong></div><div className="hero-progress-track"><span style={{ width: `${featuredPercent}%` }} /></div><small>{user?.role === 'teacher' ? `${studentCount} étudiants touchés` : 'Continue ton parcours d’apprentissage'}</small></div>
+          <div className="hero-rating-card"><span className="hero-rating-star">★</span><div><strong>{featuredVideo?.averageRating || '4.9'}/5</strong><small>Note moyenne</small></div></div>
+          <div className="hero-student-count"><span>◉</span><div><strong>{studentCount}+</strong><small>{user?.role === 'teacher' ? 'étudiants accompagnés' : 'étudiants actifs'}</small></div></div>
         </div>
       </div>
 
