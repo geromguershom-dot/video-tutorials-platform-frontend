@@ -52,6 +52,7 @@ export default function Home() {
   const featuredProgress = featuredVideo ? getProgressForVideo(featuredVideo._id) : null;
   const featuredPercent = featuredVideo && featuredProgress ? Math.min(100, Math.round((featuredProgress.watchedSeconds / (featuredVideo.duration || 1)) * 100)) : user?.role === 'teacher' ? 82 : 64;
   const studentCount = featuredVideo ? Math.max(128, Math.round((featuredVideo.views || 0) * 1.8)) : 248;
+  const getVideoLevel = (video) => video.level || (video.duration > 720 ? 'Intermédiaire' : video.duration > 540 ? 'Avancé' : 'Débutant');
 
   return (
     <div className="home-page">
@@ -163,30 +164,22 @@ export default function Home() {
             <div className="video-grid">
               {videos.map((video) => (
                 <Link to={`/video/${video._id}`} key={video._id} className="video-card-link">
-                  <div className="video-card">
+                  <article className="video-card">
                     <div className="video-thumb-wrap">
                       <img src={video.thumbnailUrl} alt={video.title} className="video-thumb" />
-                      <span className="video-play-chip">▶</span>
-                      <span className="video-level-chip">{video.level || 'Cours'}</span>
+                      <span className="video-play-chip">▶ <span>Voir le cours</span></span>
+                      <span className={`video-level-chip level-${getVideoLevel(video).toLowerCase().replace('é', 'e')}`}>{getVideoLevel(video)}</span>
+                      <span className="video-duration-chip">{video.duration ? `${Math.ceil(video.duration / 60)} min` : 'Vidéo'}</span>
                     </div>
                     <div className="video-card-body">
-                      <div className="video-card-kicker"><span>{video.category?.name || 'Formation'}</span><span>{video.duration ? `${Math.ceil(video.duration / 60)} min` : 'Vidéo'}</span></div>
+                      <div className="video-card-kicker"><span>{video.category?.name || 'Formation'}</span><span className="video-card-rating">★ {video.averageRating || 'Nouveau'}</span></div>
                       <h3 className="video-card-title">{video.title}</h3>
-                      <p className="video-card-meta">
-                        {video.teacher?.name} · {video.category?.name}
-                      </p>
-                      <p className="video-card-stats">
-                        ⭐ {video.averageRating || 0} · 👁 {video.views || 0} vues
-                      </p>
-                      {user && getProgressForVideo(video._id) && (
-                        <div className="video-card-progress" aria-label="Progression du cours">
-                          <span>Progression</span>
-                          <span>{Math.min(100, Math.round((getProgressForVideo(video._id).watchedSeconds / (video.duration || 1)) * 100))}%</span>
-                          <div className="progress-bar-bg"><div className="progress-bar-fill" style={{ width: `${Math.min(100, Math.round((getProgressForVideo(video._id).watchedSeconds / (video.duration || 1)) * 100))}%` }} /></div>
-                        </div>
-                      )}
+                      <div className="video-teacher-row"><span className="video-teacher-avatar">{video.teacher?.name?.charAt(0) || 'D'}</span><span><strong>{video.teacher?.name || 'Professeur DevLearn'}</strong><small>{video.views || 0} vues · Cours vidéo</small></span></div>
+                      {user?.role === 'student' && getProgressForVideo(video._id) ? (
+                        <div className="video-card-progress" aria-label="Progression du cours"><div className="progress-label-row"><span>Ta progression</span><strong>{Math.min(100, Math.round((getProgressForVideo(video._id).watchedSeconds / (video.duration || 1)) * 100))}%</strong></div><div className="progress-bar-bg"><div className="progress-bar-fill" style={{ width: `${Math.min(100, Math.round((getProgressForVideo(video._id).watchedSeconds / (video.duration || 1)) * 100))}%` }} /></div></div>
+                      ) : <div className="video-card-footer"><span>Prêt à apprendre</span><span className="video-card-cta">Continuer <b>→</b></span></div>}
                     </div>
-                  </div>
+                  </article>
                 </Link>
               ))}
             </div>
