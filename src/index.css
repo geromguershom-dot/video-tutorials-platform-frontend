@@ -1848,3 +1848,15 @@ body { background-image: radial-gradient(circle at 14% 8%, rgba(124,58,237,.09),
 .home-page { max-width: 1420px; margin: 0 auto; }
 @media (max-width: 900px) { .topbar { grid-template-columns: auto 1fr auto; gap: 14px; padding: 0 18px; } .topbar-nav { display: none; } .topbar-search { grid-column: 2; } }
 @media (max-width: 640px) { .sidebar { width: 100%; height: 68px; padding: 7px 10px; border-right: 0; border-bottom: 1px solid var(--ng-line); } .sidebar-logo { display: none; } .sidebar-nav { display: flex; flex-direction: row; justify-content: space-around; gap: 4px; } .sidebar-link { width: 45px; height: 45px; } .sidebar-section-title { display: none !important; } .topbar { grid-template-columns: auto auto; height: auto; min-height: 70px; padding: 12px 14px; } .topbar-brand small { display: none; } .topbar-search { grid-column: 1 / -1; grid-row: 2; } .topbar-right { grid-column: 2; } .topbar-user { display: none; } }
+
+/* NEXT GENERATION — TITLE BACKDROP IMAGE */
+.hero-title-stage { position: relative; isolation: isolate; overflow: hidden; }
+.hero-title-backdrop { position: absolute; z-index: -1; top: -32px; left: -44px; width: 116%; height: calc(100% + 64px); overflow: hidden; border: 1px solid rgba(34,211,238,.36); border-right-color: rgba(167,139,250,.68); border-radius: 22px; opacity: .84; background: linear-gradient(100deg, rgba(9,9,11,.6), rgba(9,9,11,.1) 62%, rgba(124,58,237,.22)); box-shadow: inset 0 0 0 1px rgba(167,139,250,.16), 0 0 24px rgba(34,211,238,.16), 14px 0 32px rgba(124,58,237,.18); }
+.hero-title-backdrop::before, .hero-title-backdrop::after { position: absolute; z-index: 2; content: ''; pointer-events: none; }
+.hero-title-backdrop::before { inset: 0; background: linear-gradient(90deg, rgba(9,9,11,.92) 0%, rgba(9,9,11,.68) 35%, rgba(9,9,11,.16) 82%, rgba(124,58,237,.2)); }
+.hero-title-backdrop::after { top: 11%; right: -1px; width: 2px; height: 78%; border-radius: 4px; background: linear-gradient(180deg, transparent, #22D3EE 25%, #A78BFA 70%, transparent); box-shadow: 0 0 15px #22D3EE, 0 0 26px #A78BFA; animation: titleEdgeGlow 3s ease-in-out infinite; }
+.hero-title-backdrop img { width: 100%; height: 100%; object-fit: cover; object-position: 66% center; opacity: .68; filter: saturate(.86) contrast(1.08); mix-blend-mode: screen; transform: scale(1.08); }
+.hero-title-stage .hero-badge, .hero-title-stage .hero-title, .hero-title-stage .hero-subtitle, .hero-title-stage .hero-actions { position: relative; z-index: 3; }
+@keyframes titleEdgeGlow { 0%, 100% { opacity: .55; } 50% { opacity: 1; } }
+@media (max-width: 800px) { .hero-title-backdrop { left: -18px; width: calc(100% + 36px); } }
+@media (prefers-reduced-motion: reduce) { .hero-title-backdrop::after { animation: none; } }

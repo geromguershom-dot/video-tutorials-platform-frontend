@@ -62,8 +62,10 @@ export default function Home() {
     <div className="home-page">
       {/* HERO */}
       <div className="hero hero-with-image">
-        <div className="hero-content">
-          <span className="hero-badge">{user?.role === 'teacher' ? '✦ ESPACE CRÉATEUR' : '🎓 PLATEFORME D\'APPRENTISSAGE'}</span>
+                <div className="hero-content hero-title-stage">
+          <div className="hero-title-backdrop" aria-hidden="true"><img src={studentLaughing} alt="" /></div>
+          <span className="hero-badge">
+{user?.role === 'teacher' ? '✦ ESPACE CRÉATEUR' : '🎓 PLATEFORME D\'APPRENTISSAGE'}</span>
           <h1 className="hero-title">
             {user?.role === 'teacher' ? 'Partagez. Enseignez.' : 'Apprenez. Partagez.'}
             <br />
