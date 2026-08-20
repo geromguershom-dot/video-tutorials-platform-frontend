@@ -2,6 +2,10 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import api from '../services/api';
 import { useAuth } from '../context/AuthContext';
+import studentFocused from '../assets/student-pose-focused.webp';
+import studentLaughing from '../assets/student-pose-laughing.webp';
+import teacherFront from '../assets/teacher-pose-front.webp';
+import teacherThreeQuarter from '../assets/teacher-pose-three-quarter.webp';
 
 export default function Home() {
   const { user } = useAuth();
@@ -89,18 +93,16 @@ export default function Home() {
             </button>}
           </div>
         </div>
-        <div className="hero-illustration hero-composition">
-          <div className="hero-orbit orbit-one" />
-          <div className="hero-orbit orbit-two" />
-          <div className="hero-illustration-circle">▶</div>
-          <div className="hero-mini-card hero-float-delay">
-            {featuredVideo?.thumbnailUrl ? <img src={featuredVideo.thumbnailUrl} alt="Miniature du tutoriel recommandé" /> : <div className="hero-mini-placeholder">▶</div>}
-            <div><span className="hero-new-badge">NOUVEAU COURS</span><strong>{featuredVideo?.title || 'Un nouveau parcours à découvrir'}</strong><small>{featuredVideo?.category?.name || 'Formation'} · {featuredVideo?.duration ? `${Math.ceil(featuredVideo.duration / 60)} min` : 'Cours pratique'}</small></div>
+                  <div className="hero-illustration hero-composition hero-showcase">
+            <div className="hero-showcase-title"><span>{user?.role === 'teacher' ? 'TEACH. INSPIRE.' : 'LEARN. BUILD.'}</span><strong>{user?.role === 'teacher' ? 'Une expertise qui rayonne.' : 'Des compétences qui prennent vie.'}</strong></div>
+            <div className="hero-panel-grid">
+              <div className="hero-image-panel panel-tall"><img src={user?.role === 'teacher' ? teacherThreeQuarter : studentFocused} alt="Personnage DevLearn en apprentissage" /><span>01 · FOCUS</span></div>
+              <div className="hero-image-panel panel-main"><img src={featuredVideo?.thumbnailUrl || (user?.role === 'teacher' ? teacherFront : studentLaughing)} alt="Aperçu du parcours DevLearn" /><div className="hero-panel-play">▶</div><span>▶ COURSE PREVIEW</span></div>
+              <div className="hero-image-panel panel-small"><img src={user?.role === 'teacher' ? teacherFront : studentLaughing} alt="Communauté DevLearn" /><span>02 · COMMUNITY</span></div>
+            </div>
+            <div className="hero-showcase-metrics"><span><strong>{featuredPercent}%</strong><small>{user?.role === 'teacher' ? 'impact du cours' : 'progression'}</small></span><span><strong>{studentCount}+</strong><small>apprenants actifs</small></span><span><strong>4.9</strong><small>note moyenne</small></span></div>
           </div>
-          <div className="hero-progress-card hero-float-slow"><div className="hero-card-line"><span>{user?.role === 'teacher' ? 'Impact du cours' : 'Ta progression'}</span><strong>{featuredPercent}%</strong></div><div className="hero-progress-track"><span style={{ width: `${featuredPercent}%` }} /></div><small>{user?.role === 'teacher' ? `${studentCount} étudiants touchés` : 'Continue ton parcours d’apprentissage'}</small></div>
-          <div className="hero-rating-card"><span className="hero-rating-star">★</span><div><strong>{featuredVideo?.averageRating || '4.9'}/5</strong><small>Note moyenne</small></div></div>
-          <div className="hero-student-count"><span>◉</span><div><strong>{studentCount}+</strong><small>{user?.role === 'teacher' ? 'étudiants accompagnés' : 'étudiants actifs'}</small></div></div>
-        </div>
+
       </div>
 
       {/* TRUST POINTS */}

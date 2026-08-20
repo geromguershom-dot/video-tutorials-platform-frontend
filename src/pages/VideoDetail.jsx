@@ -81,7 +81,7 @@ export default function VideoDetail() {
     setQuizSubmitted(true);
   };
 
-  const activeQuiz = QUIZZES.find((item) => video?.title?.includes(item.match));
+  const activeQuiz = QUIZZES.find((item) => video?.title?.toLowerCase()?.includes(item.match.toLowerCase())) || { questions: [{ prompt: 'Quelle est la meilleure méthode pour consolider ce que tu viens d’apprendre ?', options: ['Pratiquer et vérifier sa compréhension', 'Regarder uniquement le titre', 'Ignorer les notions clés'], answer: 'Pratiquer et vérifier sa compréhension' }] };
   const quizScore = activeQuiz ? activeQuiz.questions.reduce((score, question, index) => score + (quizAnswers[index] === question.answer ? 1 : 0), 0) : 0;
 
   const handleTimeUpdate = () => {
