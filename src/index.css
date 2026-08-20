@@ -2110,3 +2110,12 @@ body { background-image: radial-gradient(circle at 8% 6%, rgba(249,115,22,.08), 
 .hero-title-stage { position: relative; z-index: 4; }
 @media (max-width: 800px) { .hero-title-backdrop { right: -12px; width: 128px; height: 190px; } .hero-title-stage { padding-right: 70px; } }
 @media (prefers-reduced-motion: reduce) { .hero-title-backdrop::after { animation: none; } }
+
+/* SCROLL CHARACTER — FOREGROUND ORIGINAL COLORS */
+.scroll-character { z-index: 12; opacity: 1 !important; filter: saturate(1.08) contrast(1.04) drop-shadow(0 24px 36px rgba(17,17,17,.22)); pointer-events: none; }
+.scroll-character-glow { z-index: 0; background: radial-gradient(circle, rgba(249,115,22,.18), rgba(37,99,235,.08) 42%, transparent 72%); }
+.scroll-character-frame { z-index: 1; opacity: 0; filter: none !important; mix-blend-mode: normal !important; }
+.scroll-character-frame.is-active { opacity: 1 !important; }
+.scroll-character-caption { z-index: 2; color: #111111; background: rgba(255,255,255,.92); border-color: rgba(249,115,22,.5); box-shadow: 0 8px 18px rgba(17,17,17,.12); }
+@media (max-width: 900px) { .scroll-character { opacity: 1 !important; width: min(28vw, 260px); } }
+@media (max-width: 520px) { .scroll-character { opacity: 1 !important; width: 170px; right: -8px; } }
