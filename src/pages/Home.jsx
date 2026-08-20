@@ -4,6 +4,7 @@ import api from '../services/api';
 import { useAuth } from '../context/AuthContext';
 import studentFocused from '../assets/student-pose-focused.webp';
 import studentLaughing from '../assets/student-pose-laughing.webp';
+import studentConfident from '../assets/student-pose-confident.webp';
 import teacherFront from '../assets/teacher-pose-front.webp';
 import teacherThreeQuarter from '../assets/teacher-pose-three-quarter.webp';
 
@@ -62,6 +63,7 @@ export default function Home() {
     <div className="home-page">
       {/* HERO */}
         <div className="hero hero-with-image">
+          <div className="hero-student-backdrop" aria-hidden="true"><img src={studentLaughing} alt="" /></div>
                 <div className="hero-content hero-title-stage">
           <span className="hero-badge">
 {user?.role === 'teacher' ? '✦ ESPACE CRÉATEUR' : '🎓 PLATEFORME D\'APPRENTISSAGE'}</span>
@@ -97,9 +99,9 @@ export default function Home() {
                   <div className="hero-illustration hero-composition hero-showcase">
             <div className="hero-showcase-title"><span>{user?.role === 'teacher' ? 'TEACH. INSPIRE.' : 'LEARN. BUILD.'}</span><strong>{user?.role === 'teacher' ? 'Une expertise qui rayonne.' : 'Des compétences qui prennent vie.'}</strong></div>
             <div className="hero-panel-grid">
-              <div className="hero-image-panel panel-tall"><img src={user?.role === 'teacher' ? teacherThreeQuarter : studentFocused} alt="Personnage DevLearn en apprentissage" /><span>01 · FOCUS</span></div>
-              <div className="hero-image-panel panel-main"><img src={featuredVideo?.thumbnailUrl || (user?.role === 'teacher' ? teacherFront : studentLaughing)} alt="Aperçu du parcours DevLearn" /><div className="hero-panel-play">▶</div><span>▶ COURSE PREVIEW</span></div>
-              <div className="hero-image-panel panel-small"><img src={user?.role === 'teacher' ? teacherFront : studentLaughing} alt="Communauté DevLearn" /><span>02 · COMMUNITY</span></div>
+              <div className="hero-image-panel panel-tall"><img src={studentFocused} alt="Étudiante concentrée" /><span>01 · FOCUS</span></div>
+              <div className="hero-image-panel panel-main"><img src={studentLaughing} alt="Étudiante en apprentissage" /><div className="hero-panel-play">▶</div><span>▶ LEARNING PREVIEW</span></div>
+              <div className="hero-image-panel panel-small"><img src={studentConfident} alt="Étudiante confiante" /><span>02 · COMMUNITY</span></div>
             </div>
             <div className="hero-showcase-metrics"><span><strong>{featuredPercent}%</strong><small>{user?.role === 'teacher' ? 'impact du cours' : 'progression'}</small></span><span><strong>{studentCount}+</strong><small>apprenants actifs</small></span><span><strong>4.9</strong><small>note moyenne</small></span></div>
           </div>
