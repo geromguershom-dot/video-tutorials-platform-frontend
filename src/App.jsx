@@ -6,6 +6,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Home from './pages/Home';
 import Dashboard from './pages/Dashboard';
+import TeacherDashboard from './pages/TeacherDashboard';
 import VideoDetail from './pages/VideoDetail';
 import Upload from './pages/Upload';
 import Playlists from './pages/Playlists';
@@ -46,6 +47,14 @@ function App() {
             element={
               <Layout>
                 <Dashboard />
+              </Layout>
+            }
+          />
+          <Route
+            path="/teacher-dashboard"
+            element={
+              <Layout>
+                <TeacherDashboard />
               </Layout>
             }
           />

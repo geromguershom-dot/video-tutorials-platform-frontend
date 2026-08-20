@@ -36,8 +36,11 @@ export default function Sidebar() {
         <>
           <div className="sidebar-section-title">ENSEIGNANT</div>
           <nav className="sidebar-nav">
+            <Link to="/teacher-dashboard" className={`sidebar-link ${isActive('/teacher-dashboard') ? 'active' : ''}`}>
+              <span>📈</span> Tableau de bord
+            </Link>
             <Link to="/upload" className={`sidebar-link ${isActive('/upload') ? 'active' : ''}`}>
-              <span>⬆️</span> Uploader
+              <span>⬆️</span> Publier un cours
             </Link>
           </nav>
         </>
