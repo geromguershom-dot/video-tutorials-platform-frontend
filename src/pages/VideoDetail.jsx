@@ -133,6 +133,8 @@ export default function VideoDetail() {
           </div>
         </div>
 
+        <div className="video-learning-path" aria-label="Parcours pédagogique"><span className="is-active"><b>01</b><small>Regarder</small></span><i /><span><b>02</b><small>Répondre au quiz</small></span><i /><span><b>03</b><small>Échanger</small></span></div>
+
         <div className="video-detail-insights">
           <span><strong>{video.category?.name || 'Formation'}</strong><small>Catégorie</small></span>
           <span><strong>{video.duration ? `${Math.ceil(video.duration / 60)} min` : '—'}</strong><small>Durée estimée</small></span>

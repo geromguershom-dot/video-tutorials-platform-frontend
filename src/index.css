@@ -1953,3 +1953,13 @@ body { background-image: radial-gradient(circle at 14% 8%, rgba(124,58,237,.07),
 .teacher-course-row { border-color: rgba(167,139,250,.13); background: rgba(17,20,27,.62); transition: transform .25s ease, border-color .25s ease, background .25s ease; }
 .teacher-course-row:hover { border-color: rgba(167,139,250,.68); background: rgba(124,58,237,.11); transform: translateX(5px); }
 @media (max-width: 700px) { .teacher-dashboard-hero { align-items: flex-start; flex-direction: column; gap: 24px; padding: 26px 22px; } .teacher-hero-actions { align-items: flex-start; flex-direction: column; } .teacher-hero-mark { align-self: flex-start; } .teacher-stat-grid-featured { margin: 16px 0 0; } }
+
+/* NEXT GENERATION — VIDEO LEARNING PATH */
+.video-learning-path { display: flex; align-items: center; gap: 10px; margin: 22px 0 18px; padding: 13px 16px; border: 1px solid rgba(34,211,238,.18); border-radius: 14px; background: linear-gradient(100deg, rgba(34,211,238,.07), rgba(124,58,237,.08)); }
+.video-learning-path span { display: flex; align-items: center; gap: 7px; color: var(--ng-muted); }
+.video-learning-path span.is-active { color: var(--ng-white); }
+.video-learning-path b { display: grid; width: 27px; height: 27px; place-items: center; border: 1px solid #3F3F46; border-radius: 50%; font-size: 9px; }
+.video-learning-path .is-active b { border-color: var(--ng-cyan); color: var(--ng-cyan); background: rgba(34,211,238,.1); box-shadow: 0 0 13px rgba(34,211,238,.3); }
+.video-learning-path small { font-size: 9px; font-weight: 800; letter-spacing: .05em; }
+.video-learning-path i { flex: 1; height: 1px; min-width: 16px; background: linear-gradient(90deg, rgba(34,211,238,.55), rgba(167,139,250,.35)); }
+@media (max-width: 520px) { .video-learning-path { gap: 5px; padding: 10px; } .video-learning-path small { font-size: 8px; } .video-learning-path b { width: 23px; height: 23px; } }
