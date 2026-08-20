@@ -1891,3 +1891,22 @@ body { background-image: radial-gradient(circle at 14% 8%, rgba(124,58,237,.07),
 .category-card h3 { font-size: 13px; }
 .category-card p { margin-top: 5px; font-size: 10px; }
 @media (max-width: 760px) { .home-page > .home-layout, .home-page > .learning-story-section, .home-page > .testimonials-section { margin-top: 58px; } .category-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+/* NEXT GENERATION — PREMIUM VIDEO CARD INTERACTIONS */
+.video-card-link { display: block; color: inherit; text-decoration: none; }
+.video-card { overflow: hidden; transform: translateY(0); transition: transform .28s ease, border-color .28s ease, box-shadow .28s ease; }
+.video-card::after { position: absolute; inset: 0; content: ''; border: 1px solid transparent; border-radius: inherit; pointer-events: none; transition: border-color .28s ease, box-shadow .28s ease; }
+.video-card-link:hover .video-card { transform: translateY(-7px) scale(1.012); }
+.video-card-link:hover .video-card::after { border-color: rgba(34,211,238,.44); box-shadow: inset 0 0 30px rgba(124,58,237,.1); }
+.video-thumb-wrap { background: var(--ng-surface-2); }
+.video-thumb-wrap::after { position: absolute; inset: 0; content: ''; background: linear-gradient(135deg, rgba(124,58,237,.18), transparent 48%, rgba(34,211,238,.08)); opacity: 0; pointer-events: none; transition: opacity .28s ease; }
+.video-card-link:hover .video-thumb-wrap::after { opacity: 1; }
+.video-card-link:hover .video-thumb { transform: scale(1.055); filter: saturate(1.12) contrast(1.08); }
+.video-play-chip { transform: translate(-50%, -50%) scale(.9); transition: opacity .25s ease, transform .25s ease, background .25s ease; }
+.video-card-link:hover .video-play-chip { opacity: 1; transform: translate(-50%, -50%) scale(1); background: rgba(124,58,237,.92); box-shadow: 0 0 24px rgba(124,58,237,.45); }
+.video-card-body { position: relative; }
+.video-card-kicker { letter-spacing: .08em; }
+.video-card-title { display: -webkit-box; overflow: hidden; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+.video-card-progress .progress-bar-fill { transform-origin: left; animation: progressReveal .9s ease-out both; }
+@keyframes progressReveal { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@media (prefers-reduced-motion: reduce) { .video-card, .video-thumb, .video-play-chip, .video-thumb-wrap::after { transition: none; } .video-card-progress .progress-bar-fill { animation: none; } }
