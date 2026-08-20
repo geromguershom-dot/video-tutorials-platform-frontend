@@ -52,11 +52,12 @@ export default function Dashboard() {
           <span className="hero-badge">TON ESPACE D’APPRENTISSAGE</span>
           <h1>Continue à progresser, {user.name?.split(' ')[0]}.</h1>
           <p>Chaque vidéo regardée te rapproche de ton prochain objectif.</p>
+          <div className="dashboard-hero-actions"><Link className="btn" to={nextVideo ? `/video/${nextVideo._id}` : '/'}>Continuer maintenant <span>→</span></Link><span className="dashboard-focus-chip">{progress.length ? 'PARCOURS ACTIF' : 'PRÊT À COMMENCER'}</span></div>
         </div>
         <div className="dashboard-ring" style={{ '--progress': `${progressPercent * 3.6}deg` }}><strong>{progressPercent}%</strong><span>progression</span></div>
       </section>
 
-      <section className="dashboard-stat-grid">
+      <section className="dashboard-stat-grid dashboard-stat-grid-featured">
         <div className="dashboard-stat"><span className="stat-icon">🎯</span><strong>{completed}</strong><small>Cours terminés</small></div>
         <div className="dashboard-stat"><span className="stat-icon">⏱</span><strong>{Math.floor(watchedSeconds / 60)} min</strong><small>Temps d’apprentissage</small></div>
         <div className="dashboard-stat"><span className="stat-icon">🔥</span><strong>{progress.length > 0 ? 'Actif' : 'Prêt'}</strong><small>Statut actuel</small></div>
