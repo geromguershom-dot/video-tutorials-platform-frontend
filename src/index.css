@@ -1963,3 +1963,46 @@ body { background-image: radial-gradient(circle at 14% 8%, rgba(124,58,237,.07),
 .video-learning-path small { font-size: 9px; font-weight: 800; letter-spacing: .05em; }
 .video-learning-path i { flex: 1; height: 1px; min-width: 16px; background: linear-gradient(90deg, rgba(34,211,238,.55), rgba(167,139,250,.35)); }
 @media (max-width: 520px) { .video-learning-path { gap: 5px; padding: 10px; } .video-learning-path small { font-size: 8px; } .video-learning-path b { width: 23px; height: 23px; } }
+
+/* DEVLEARN DUAL THEME — CREAM WHITE + DARK ACCENTS */
+:root { --cream-bg: #F6F1E8; --cream-surface: #FFFDF8; --cream-surface-2: #F1ECE3; --cream-ink: #171B24; --cream-muted: #64748B; --cream-line: #E4DED3; }
+html, body { background: var(--cream-bg); color: var(--cream-ink); }
+body { background-image: radial-gradient(circle at 8% 4%, rgba(124,58,237,.055), transparent 22%), radial-gradient(circle at 92% 10%, rgba(34,211,238,.045), transparent 20%); }
+.app-shell, .main-area { background: transparent; }
+.sidebar { background: rgba(255,253,248,.94); border-right-color: var(--cream-line); box-shadow: 12px 0 34px rgba(23,27,36,.06); }
+.sidebar-logo { color: var(--cream-ink); text-shadow: none; }
+.sidebar-section-title { color: #6D28D9; }
+.sidebar-link { color: var(--cream-muted); }
+.sidebar-link:hover { color: var(--cream-ink); border-color: rgba(124,58,237,.2); background: rgba(124,58,237,.06); }
+.sidebar-link.active { color: #6D28D9; border-color: rgba(124,58,237,.24); background: rgba(124,58,237,.1); }
+.topbar { background: rgba(255,253,248,.86); border-bottom-color: var(--cream-line); box-shadow: 0 8px 28px rgba(23,27,36,.04); }
+.topbar a { color: var(--cream-muted); }
+.topbar a:hover, .topbar a.active { color: #6D28D9; }
+.search-box { background: var(--cream-surface); border-color: var(--cream-line); color: var(--cream-ink); }
+.search-box input { color: var(--cream-ink); }
+.search-box input::placeholder { color: #94A3B8; }
+.card, .side-card, .trust-item, .category-card, .video-card, .auth-box, .form-box, .dashboard-stat, .dashboard-panel, .teacher-stat, .teacher-dashboard-panel, .playlist-card, .question-card, .forum-stat-row > span, .learning-step, .testimonial-grid blockquote { color: var(--cream-ink); border-color: var(--cream-line); background: rgba(255,253,248,.94); box-shadow: 0 14px 35px rgba(23,27,36,.07); }
+.card p, .side-card p, .category-card p, .video-teacher-row small, .dashboard-panel .muted-text, .teacher-dashboard-panel .muted-text { color: var(--cream-muted); }
+.video-card-title, .category-name, .dashboard-panel h2, .teacher-dashboard-panel h2, .comments-title { color: var(--cream-ink); }
+.video-card-body { background: var(--cream-surface); }
+.video-card-kicker { color: #6D28D9; }
+.video-card-rating { color: #B45309; }
+.video-card-progress .progress-label-row { color: var(--cream-muted); }
+.dashboard-progress-item, .teacher-course-row { background: var(--cream-surface-2); border-color: var(--cream-line); }
+.dashboard-progress-item strong, .teacher-course-row strong { color: var(--cream-ink); }
+.dashboard-progress-item small, .teacher-course-row small { color: var(--cream-muted); }
+.eyebrow { color: #0891B2; }
+.hero-badge { border-color: rgba(8,145,178,.28); color: #0E7490; background: rgba(34,211,238,.1); }
+.section-header h2, .section-heading-centered h2 { color: var(--cream-ink); }
+.text-link { color: #6D28D9; }
+.empty-state-card, .connection-state { color: var(--cream-ink); background: var(--cream-surface); border-color: var(--cream-line); }
+.home-page > .home-layout { color: var(--cream-ink); }
+/* Preserve dark storytelling zones for contrast and brand recognition */
+.hero-showcase, .dashboard-hero, .teacher-dashboard-hero, .video-player-wrap, .quiz-card, .video-learning-path, .home-cta-section { background: linear-gradient(120deg, #11141B, #171B24 68%); color: #F8FAFC; }
+.hero-title-backdrop { background: linear-gradient(100deg, rgba(8,10,15,.78), rgba(8,10,15,.18) 62%, rgba(124,58,237,.2)); }
+.home-cta-section h2, .dashboard-hero h1, .teacher-dashboard-hero h1 { color: #F8FAFC; }
+.home-cta-section p, .dashboard-hero p, .teacher-dashboard-hero p { color: #CBD5E1; }
+.dashboard-ring { background: conic-gradient(#22D3EE var(--progress), #303744 0); }
+.quiz-card { border-color: rgba(34,211,238,.35); }
+.video-learning-path { border-color: rgba(34,211,238,.3); }
+@media (max-width: 760px) { .sidebar { background: rgba(255,253,248,.98); } .topbar { background: rgba(255,253,248,.96); } }
