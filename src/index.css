@@ -2006,3 +2006,17 @@ body { background-image: radial-gradient(circle at 8% 4%, rgba(124,58,237,.055),
 .quiz-card { border-color: rgba(34,211,238,.35); }
 .video-learning-path { border-color: rgba(34,211,238,.3); }
 @media (max-width: 760px) { .sidebar { background: rgba(255,253,248,.98); } .topbar { background: rgba(255,253,248,.96); } }
+
+/* DUAL THEME — INTERNAL PAGE BALANCE */
+.dashboard-page, .teacher-dashboard-page, .playlists-page, .forum-page, .video-detail-page { color: var(--cream-ink); }
+.dashboard-panel h2, .teacher-dashboard-panel h2, .video-detail-title, .comments-title, .playlist-card h3, .question-card h3 { color: var(--cream-ink); }
+.video-detail-lead, .video-detail-meta, .video-detail-insights small, .video-description, .comment-body, .playlist-card p, .question-card p { color: var(--cream-muted); }
+.video-detail-meta, .video-detail-insights, .rating-box { border-color: var(--cream-line); }
+.video-detail-meta, .video-detail-insights, .rating-box, .video-detail-page > .card:not(.quiz-card) { background: rgba(255,253,248,.92); }
+.video-detail-title { text-shadow: none; }
+.video-detail-eyebrow { color: #0891B2; }
+.video-detail-author .user-name { color: var(--cream-ink); }
+.video-detail-author .user-role { color: var(--cream-muted); }
+.playlist-card, .question-card { box-shadow: 0 12px 28px rgba(23,27,36,.06); }
+.forum-stat-row > span strong, .playlist-card strong { color: var(--cream-ink); }
+.forum-stat-row > span small, .playlist-card small { color: var(--cream-muted); }
