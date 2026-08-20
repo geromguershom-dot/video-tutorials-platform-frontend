@@ -1572,3 +1572,44 @@ body { font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSyst
 .comment-content { color: #475569; }
 @media (max-width: 900px) { .video-detail-layout { grid-template-columns: 1fr; } .playlist-sommaire { position: static; } }
 @media (max-width: 600px) { .video-detail-heading, .video-detail-meta { align-items: flex-start; flex-direction: column; } .video-detail-insights { grid-template-columns: 1fr; } }
+
+/* EDUTECH PREMIUM — STUDENT DASHBOARD */
+.dashboard-page { color: var(--edu-text); }
+.dashboard-hero { display: flex; justify-content: space-between; align-items: center; gap: 24px; padding: 30px 34px; border: 1px solid #DBEAFE; border-radius: 18px; background: linear-gradient(120deg, #EFF6FF, #FFFFFF 68%); box-shadow: var(--edu-shadow); }
+.dashboard-hero h1 { margin: 10px 0 6px; color: var(--edu-navy); font-size: clamp(26px, 3vw, 38px); letter-spacing: -.04em; }
+.dashboard-hero p { margin: 0; color: var(--edu-muted); }
+.hero-badge, .eyebrow { color: var(--edu-blue); font-size: 10px; font-weight: 900; letter-spacing: .12em; }
+.dashboard-ring { display: grid; place-items: center; width: 126px; height: 126px; flex: 0 0 auto; border-radius: 50%; background: conic-gradient(var(--edu-success) var(--progress), #DBEAFE 0); box-shadow: inset 0 0 0 12px #fff; }
+.dashboard-ring strong, .dashboard-ring span { grid-column: 1; grid-row: 1; }
+.dashboard-ring strong { margin-top: -3px; color: var(--edu-navy); font-size: 27px; }
+.dashboard-ring span { margin-top: 52px; color: var(--edu-muted); font-size: 9px; }
+.dashboard-stat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 20px 0; }
+.dashboard-stat, .dashboard-panel { border: 1px solid var(--edu-border); border-radius: 14px; background: var(--edu-white); box-shadow: var(--edu-shadow); }
+.dashboard-stat { display: grid; grid-template-columns: 40px 1fr; column-gap: 11px; align-items: center; padding: 17px 18px; }
+.stat-icon { grid-row: span 2; display: grid; place-items: center; width: 40px; height: 40px; border-radius: 10px; background: #EFF6FF; }
+.dashboard-stat strong { color: var(--edu-navy); font-size: 21px; }
+.dashboard-stat small, .muted-text { color: var(--edu-muted); font-size: 11px; }
+.dashboard-content-grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 18px; }
+.dashboard-panel { padding: 22px; }
+.dashboard-panel .section-header { margin-bottom: 18px; }
+.dashboard-panel h2 { margin: 5px 0 0; color: var(--edu-navy); font-size: 19px; }
+.continue-card { display: grid; grid-template-columns: 150px 1fr; gap: 16px; overflow: hidden; color: inherit; text-decoration: none; }
+.continue-card img { width: 150px; height: 105px; object-fit: cover; border-radius: 10px; }
+.continue-card h3 { margin: 8px 0 5px; color: var(--edu-navy); font-size: 15px; }
+.continue-card p { margin: 0 0 9px; color: var(--edu-muted); font-size: 12px; }
+.continue-link, .text-link { color: var(--edu-blue); font-size: 11px; font-weight: 800; text-decoration: none; }
+.badge-count { color: var(--edu-blue); font-weight: 800; }
+.badge-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+.achievement-badge { padding: 12px; border: 1px solid var(--edu-border); border-radius: 10px; opacity: .45; filter: grayscale(1); }
+.achievement-badge.unlocked { opacity: 1; filter: none; border-color: #BBF7D0; background: #F0FDF4; }
+.achievement-badge > span, .achievement-badge strong, .achievement-badge small { display: block; }
+.achievement-badge > span { margin-bottom: 5px; font-size: 19px; }
+.achievement-badge strong { color: var(--edu-navy); font-size: 11px; }
+.achievement-badge small { margin-top: 3px; color: var(--edu-muted); font-size: 9px; }
+.dashboard-progress-panel { margin-top: 18px; }
+.dashboard-progress-list { display: grid; gap: 15px; }
+.dashboard-progress-item > div:first-child { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 6px; }
+.dashboard-progress-item strong { color: var(--edu-text); font-size: 12px; }
+.dashboard-progress-item small { color: var(--edu-muted); font-size: 10px; }
+@media (max-width: 760px) { .dashboard-stat-grid, .dashboard-content-grid { grid-template-columns: 1fr; } .dashboard-hero { align-items: flex-start; flex-direction: column; } }
+@media (max-width: 480px) { .continue-card { grid-template-columns: 1fr; } .continue-card img { width: 100%; height: 145px; } .dashboard-panel { padding: 17px; } }
