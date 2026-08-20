@@ -1478,3 +1478,56 @@ input:focus, textarea:focus, select:focus { border-color: var(--brand); box-shad
 .video-card-cta b { display: inline-block; margin-left: 3px; transition: transform .2s; }
 .video-card:hover .video-card-cta b { transform: translateX(4px); }
 @media (prefers-reduced-motion: reduce) { .video-card, .video-thumb, .video-play-chip, .video-card-cta b { transition: none; } }
+
+/* EDUTECH PREMIUM DESIGN SYSTEM */
+:root {
+  --edu-navy: #0B1220;
+  --edu-blue: #2563EB;
+  --edu-blue-light: #60A5FA;
+  --edu-bg: #F8FAFC;
+  --edu-white: #FFFFFF;
+  --edu-text: #111827;
+  --edu-muted: #64748B;
+  --edu-border: #E2E8F0;
+  --edu-success: #22C55E;
+  --edu-shadow: 0 12px 32px rgba(15, 23, 42, .08);
+}
+html, body { background: var(--edu-bg); color: var(--edu-text); }
+body { font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+.app-shell { background: var(--edu-bg); }
+.sidebar { width: 248px; padding: 22px 16px; background: var(--edu-white); border-right: 1px solid var(--edu-border); box-shadow: 4px 0 20px rgba(15,23,42,.025); }
+.sidebar-logo { padding: 8px 12px 28px; color: var(--edu-navy); font-size: 21px; letter-spacing: -.03em; }
+.logo-icon { color: var(--edu-blue); }
+.sidebar-section-title { color: #94A3B8; font-size: 10px; font-weight: 800; letter-spacing: .12em; }
+.sidebar-link { color: #64748B; border-radius: 10px; font-size: 13px; }
+.sidebar-link:hover { color: var(--edu-blue); background: #EFF6FF; }
+.sidebar-link.active { color: var(--edu-blue); background: #EFF6FF; box-shadow: inset 3px 0 0 var(--edu-blue); }
+.main-area { background: var(--edu-bg); }
+.topbar { height: 72px; padding: 0 34px; background: rgba(255,255,255,.94); border-bottom: 1px solid var(--edu-border); backdrop-filter: blur(14px); }
+.topbar-search { color: var(--edu-text); background: #F1F5F9 !important; border: 1px solid transparent !important; border-radius: 10px; }
+.topbar-search:focus { border-color: #BFDBFE !important; background: var(--edu-white) !important; box-shadow: 0 0 0 3px rgba(37,99,235,.1); }
+.avatar-circle { color: var(--edu-white); background: linear-gradient(135deg, var(--edu-blue), var(--edu-blue-light)); }
+.user-name { color: var(--edu-text); }
+.user-role { color: var(--edu-muted); }
+.page-content { max-width: 1440px; width: 100%; margin: 0 auto; padding: 34px 42px 56px; }
+.btn { border-radius: 9px; background: var(--edu-blue); box-shadow: 0 6px 14px rgba(37,99,235,.18); }
+.btn:hover { opacity: 1; background: #1D4ED8; transform: translateY(-1px); }
+.card, .side-card, .trust-item, .category-card, .video-card, .auth-box, .form-box { border-color: var(--edu-border); background: var(--edu-white); box-shadow: var(--edu-shadow); }
+.section-header h2, .home-page h1, .home-page h2, .home-page h3 { color: var(--edu-navy); }
+.category-card { color: var(--edu-text); border-radius: 12px; }
+.category-card:hover, .category-card.is-selected { border-color: #93C5FD; background: #EFF6FF; }
+.video-card { border-color: var(--edu-border); background: var(--edu-white); box-shadow: 0 8px 24px rgba(15,23,42,.06); }
+.video-card:hover { border-color: #93C5FD; box-shadow: 0 18px 38px rgba(37,99,235,.14); }
+.video-card-title { color: var(--edu-navy); }
+.video-card-kicker { color: var(--edu-blue); }
+.video-teacher-row strong { color: var(--edu-text); }
+.video-teacher-row small, .video-card-footer { color: var(--edu-muted); }
+.video-teacher-avatar { color: var(--edu-blue); border-color: #BFDBFE; background: #EFF6FF; }
+.video-card-rating { color: #F59E0B; }
+.video-card-cta, .progress-label-row strong { color: var(--edu-success); }
+.video-card-progress .progress-bar-fill, .progress-bar-fill { background: var(--edu-success); }
+.hero, .hero-section { border-color: #DBEAFE; }
+.role-teacher .sidebar-link.active { color: #7C3AED; background: #F5F3FF; box-shadow: inset 3px 0 0 #7C3AED; }
+.role-teacher .logo-icon { color: #7C3AED; }
+@media (max-width: 900px) { .sidebar { width: 220px; } .page-content { padding: 28px 24px 48px; } .topbar { padding: 0 24px; } }
+@media (max-width: 640px) { .sidebar { width: 72px; padding: 16px 8px; } .sidebar-logo { justify-content: center; padding: 8px 0 22px; font-size: 0; } .sidebar-logo .logo-icon { font-size: 20px; } .sidebar-link { justify-content: center; padding: 11px 8px; font-size: 0; } .sidebar-link svg, .sidebar-link i { margin: 0; } .sidebar-section-title { display: none; } .page-content { padding: 22px 16px 36px; } .topbar { padding: 0 14px; } .topbar-search { max-width: 190px; } }
