@@ -1,5 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import localHostLogo from '../assets/localhost-academy-logo.jpeg';
 
 export default function Topbar() {
   const { user, logout } = useAuth();
@@ -12,7 +13,7 @@ export default function Topbar() {
 
   return (
     <header className="topbar">
-      <Link className="topbar-brand" to="/"><span>✦</span><strong>DEVLEARN</strong><small>NEXT GEN LEARNING</small></Link>
+      <Link className="topbar-brand localhost-topbar-brand" to="/"><img src={localHostLogo} alt="LocalHost Academy" className="topbar-localhost-logo" /><span className="brand-divider"></span><span>✦</span><strong>DEVLEARN</strong><small>NEXT GEN LEARNING</small></Link>
       <nav className="topbar-nav"><Link to="/">Explore</Link>{user?.role === 'student' && <><Link to="/dashboard">My Learning</Link><Link to="/playlists">Playlists</Link></>}{(user?.role === 'teacher' || user?.role === 'admin') && <Link to="/teacher-dashboard">Creator Studio</Link>}<Link to="/forum">Community</Link></nav>
       <input
         type="text"

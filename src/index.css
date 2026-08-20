@@ -2058,3 +2058,13 @@ body { background-image: radial-gradient(circle at 8% 6%, rgba(249,115,22,.08), 
 .empty-state-card, .connection-state { background: var(--lh-white); border-color: rgba(17,17,17,.1); }
 .home-cta-section { background: linear-gradient(120deg, var(--lh-black), #252525); border-top-color: rgba(249,115,22,.4); }
 .home-cta-section .cta-accent { color: var(--lh-orange); }
+
+/* LOCALHOST ACADEMY BRANDING */
+.localhost-brand { display: flex; flex-direction: column; align-items: flex-start; gap: 9px; text-decoration: none; }
+.localhost-logo { width: 132px; height: 74px; object-fit: contain; object-position: center; background: #fff; mix-blend-mode: multiply; }
+.devlearn-brand-mark { display: inline-flex; align-items: center; gap: 8px; color: var(--lh-black); font-weight: 800; letter-spacing: .02em; }
+.localhost-topbar-brand { display: inline-flex; align-items: center; gap: 10px; }
+.topbar-localhost-logo { width: 84px; height: 34px; object-fit: contain; object-position: center; background: #fff; mix-blend-mode: multiply; }
+.brand-divider { width: 1px; height: 28px; background: rgba(17,17,17,.16); }
+.localhost-topbar-brand > span:not(.brand-divider) { color: var(--lh-orange); }
+@media (max-width: 860px) { .topbar-localhost-logo { width: 66px; } .localhost-topbar-brand strong { font-size: 13px; } .localhost-topbar-brand small { display: none; } .localhost-logo { width: 108px; height: 62px; } }
