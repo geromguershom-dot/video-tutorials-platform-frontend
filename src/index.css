@@ -1934,3 +1934,22 @@ body { background-image: radial-gradient(circle at 14% 8%, rgba(124,58,237,.07),
 .dashboard-progress-item { position: relative; padding: 13px 15px; border: 1px solid rgba(167,139,250,.14); border-radius: 12px; background: rgba(17,20,27,.68); }
 .dashboard-progress-item::before { position: absolute; top: 18px; left: -23px; width: 9px; height: 9px; content: ''; border: 2px solid var(--ng-cyan); border-radius: 50%; background: var(--ng-black); box-shadow: 0 0 12px rgba(34,211,238,.65); }
 @media (max-width: 700px) { .dashboard-hero { align-items: flex-start; flex-direction: column; gap: 24px; padding: 26px 22px; } .dashboard-hero-actions { align-items: flex-start; flex-direction: column; } .dashboard-stat-grid-featured { margin-top: 16px; padding: 0; } .dashboard-ring { width: 108px; height: 108px; } }
+
+/* NEXT GENERATION — CREATOR STUDIO */
+.teacher-dashboard-page { max-width: 1180px; margin: 0 auto; }
+.teacher-dashboard-hero { position: relative; overflow: hidden; min-height: 230px; align-items: flex-end; padding: 34px 38px; }
+.teacher-dashboard-hero::after { position: absolute; right: 7%; bottom: -120px; width: 300px; height: 300px; content: ''; border: 1px solid rgba(167,139,250,.24); border-radius: 50%; box-shadow: 0 0 44px rgba(124,58,237,.2); pointer-events: none; }
+.teacher-dashboard-hero > div:first-child { position: relative; z-index: 2; }
+.teacher-dashboard-hero h1 { max-width: 620px; margin: 12px 0 8px; font-size: clamp(28px, 4vw, 46px); letter-spacing: -.045em; }
+.teacher-dashboard-hero p { max-width: 470px; color: var(--ng-muted); }
+.teacher-hero-actions { display: flex; align-items: center; gap: 14px; margin-top: 20px; }
+.teacher-focus-chip { padding: 8px 11px; border: 1px solid rgba(167,139,250,.34); border-radius: 999px; color: var(--ng-purple-light); background: rgba(124,58,237,.1); font-size: 9px; font-weight: 900; letter-spacing: .12em; }
+.teacher-hero-mark { position: relative; z-index: 2; display: flex; align-items: center; gap: 10px; padding: 14px 17px; border: 1px solid rgba(167,139,250,.4); border-radius: 15px; background: rgba(17,20,27,.8); box-shadow: 0 0 24px rgba(124,58,237,.18); }
+.teacher-hero-mark strong { color: var(--ng-purple-light); font-size: 35px; line-height: .9; }
+.teacher-hero-mark span { color: var(--ng-muted); font-size: 9px; line-height: 1.45; text-transform: uppercase; letter-spacing: .08em; }
+.teacher-stat-grid-featured { position: relative; z-index: 3; margin: -26px 18px 0; }
+.teacher-stat-grid-featured .teacher-stat { min-height: 102px; background: rgba(17,20,27,.95); }
+.teacher-dashboard-panel { margin-top: 38px; border-radius: 18px; }
+.teacher-course-row { border-color: rgba(167,139,250,.13); background: rgba(17,20,27,.62); transition: transform .25s ease, border-color .25s ease, background .25s ease; }
+.teacher-course-row:hover { border-color: rgba(167,139,250,.68); background: rgba(124,58,237,.11); transform: translateX(5px); }
+@media (max-width: 700px) { .teacher-dashboard-hero { align-items: flex-start; flex-direction: column; gap: 24px; padding: 26px 22px; } .teacher-hero-actions { align-items: flex-start; flex-direction: column; } .teacher-hero-mark { align-self: flex-start; } .teacher-stat-grid-featured { margin: 16px 0 0; } }
