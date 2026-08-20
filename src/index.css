@@ -1870,3 +1870,8 @@ body { background-image: radial-gradient(circle at 14% 8%, rgba(124,58,237,.07),
 .quiz-card::after { position: absolute; top: 18px; right: 20px; content: 'ACTIVE LEARNING'; color: rgba(34,211,238,.68); font-size: 8px; font-weight: 900; letter-spacing: .15em; pointer-events: none; }
 .quiz-heading { position: relative; z-index: 1; }
 .quiz-progress { padding: 6px 9px; border: 1px solid rgba(34,211,238,.3); border-radius: 999px; color: var(--ng-cyan); background: rgba(34,211,238,.08); font-size: 9px; font-weight: 900; }
+
+/* NEXT GENERATION — CLEAN HERO TYPOGRAPHY */
+.hero-highlight { background: none; color: var(--ng-cyan); -webkit-text-fill-color: currentColor; text-shadow: 0 0 18px rgba(34,211,238,.22); }
+.hero-title-stage .hero-title { max-width: 540px; font-size: clamp(36px, 5vw, 62px); line-height: 1.05; }
+.hero-title-stage .hero-subtitle { max-width: 430px; color: var(--ng-muted); }
