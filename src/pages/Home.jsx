@@ -116,6 +116,17 @@ export default function Home() {
         ))}
       </div>
 
+      <section className="learning-story-section">
+        <div className="section-heading-centered"><span className="hero-badge">UNE MÉTHODE SIMPLE</span><h2>Apprends avec un parcours qui te ressemble.</h2><p>DevLearn relie contenu, pratique et accompagnement dans une expérience fluide.</p></div>
+        <div className="learning-steps"><div className="learning-step"><span>01</span><strong>Choisis ton objectif</strong><p>Explore les catégories et trouve le tutoriel adapté à ton niveau.</p></div><div className="learning-step"><span>02</span><strong>Apprends à ton rythme</strong><p>Regarde les vidéos, réponds aux quiz et reprends là où tu t’es arrêté.</p></div><div className="learning-step"><span>03</span><strong>Progresse en communauté</strong><p>Pose tes questions et échange avec les enseignants et les autres étudiants.</p></div></div>
+      </section>
+
+      <section className="platform-stats-section"><div><strong>{Math.max(500, videos.length * 20)}+</strong><span>cours disponibles</span></div><div><strong>{Math.max(50, visibleCategories.length * 8)}+</strong><span>enseignants passionnés</span></div><div><strong>{studentCount.toLocaleString()}+</strong><span>étudiants actifs</span></div><div><strong>4.9/5</strong><span>expérience moyenne</span></div></section>
+
+      <section className="testimonials-section"><div className="section-heading-centered"><span className="hero-badge">ILS APPRENNENT AVEC DEVLEARN</span><h2>Une communauté qui avance ensemble.</h2></div><div className="testimonial-grid"><blockquote>« J’ai enfin trouvé une plateforme qui me permet de suivre ma progression et de poser mes questions au bon moment. »<cite>— Amina, étudiante en développement web</cite></blockquote><blockquote>« Publier mes tutoriels et voir les étudiants progresser rend mon rôle d’enseignant beaucoup plus concret. »<cite>— Kevin, enseignant DevLearn</cite></blockquote><blockquote>« Les quiz et les réponses du forum transforment une simple vidéo en véritable parcours pédagogique. »<cite>— Thomas, étudiant</cite></blockquote></div></section>
+
+      <section className="home-cta-section"><div><span className="hero-badge">PRÊT À COMMENCER ?</span><h2>Ton prochain progrès commence maintenant.</h2><p>Rejoins une expérience d’apprentissage claire, humaine et orientée résultats.</p></div><button className="btn" onClick={() => document.getElementById('videos-section').scrollIntoView({ behavior: 'smooth' })}>Explorer les cours →</button></section>
+
       <div className="home-layout">
         <div className="home-main">
           {/* CATEGORIES */}
