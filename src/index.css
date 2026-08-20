@@ -2084,3 +2084,12 @@ body { background-image: radial-gradient(circle at 8% 6%, rgba(249,115,22,.08), 
 .hero-showcase-title, .hero-showcase-metrics { position: relative; z-index: 7; }
 .hero-title-backdrop { display: none !important; }
 @media (prefers-reduced-motion: reduce) { .hero-image-panel:hover { transform: none; } }
+
+/* FINAL HERO PANEL DIMENSIONS */
+.hero-panel-grid { min-width: 500px; min-height: 360px; }
+.hero-image-panel { flex: 0 0 auto !important; }
+.hero-image-panel.panel-tall { width: 150px !important; height: 270px !important; }
+.hero-image-panel.panel-main { width: 220px !important; height: 330px !important; }
+.hero-image-panel.panel-small { width: 150px !important; height: 250px !important; }
+.hero-image-panel img { min-width: 100%; min-height: 100%; }
+.localhost-brand, .localhost-topbar-brand, .localhost-logo, .topbar-localhost-logo, .brand-divider { display: none !important; }

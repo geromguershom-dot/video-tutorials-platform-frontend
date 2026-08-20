@@ -1,6 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import localHostLogo from '../assets/localhost-academy-logo.jpeg';
 
 export default function Sidebar() {
   const location = useLocation();
@@ -17,9 +16,8 @@ export default function Sidebar() {
 
   return (
     <aside className="sidebar">
-      <Link className="sidebar-logo localhost-brand" to="/">
-        <img src={localHostLogo} alt="LocalHost Academy" className="localhost-logo" />
-        <span className="devlearn-brand-mark"><span className="logo-icon">▶</span> DevLearn</span>
+      <Link className="sidebar-logo" to="/">
+        <span className="logo-icon">▶</span> DevLearn
       </Link>
 
       <nav className="sidebar-nav">
