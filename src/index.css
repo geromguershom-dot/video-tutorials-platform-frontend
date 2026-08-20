@@ -1531,3 +1531,44 @@ body { font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSyst
 .role-teacher .logo-icon { color: #7C3AED; }
 @media (max-width: 900px) { .sidebar { width: 220px; } .page-content { padding: 28px 24px 48px; } .topbar { padding: 0 24px; } }
 @media (max-width: 640px) { .sidebar { width: 72px; padding: 16px 8px; } .sidebar-logo { justify-content: center; padding: 8px 0 22px; font-size: 0; } .sidebar-logo .logo-icon { font-size: 20px; } .sidebar-link { justify-content: center; padding: 11px 8px; font-size: 0; } .sidebar-link svg, .sidebar-link i { margin: 0; } .sidebar-section-title { display: none; } .page-content { padding: 22px 16px 36px; } .topbar { padding: 0 14px; } .topbar-search { max-width: 190px; } }
+
+/* EDUTECH PREMIUM — VIDEO DETAIL */
+.video-detail-layout { display: grid; grid-template-columns: minmax(0, 1fr) 310px; gap: 26px; align-items: start; }
+.video-detail-main { min-width: 0; }
+.back-link { display: inline-flex; margin-bottom: 18px; color: var(--edu-blue); font-size: 13px; font-weight: 700; text-decoration: none; }
+.video-detail-eyebrow { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; color: var(--edu-blue); font-size: 10px; font-weight: 900; letter-spacing: .12em; }
+.eyebrow-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--edu-success); }
+.eyebrow-line { width: 42px; height: 1px; background: #BFDBFE; }
+.video-player-wrap { overflow: hidden; border: 1px solid #CBD5E1; border-radius: 16px; background: var(--edu-navy); box-shadow: 0 18px 36px rgba(15,23,42,.14); }
+.video-player { display: block; width: 100%; max-height: 540px; background: var(--edu-navy); }
+.video-detail-heading { display: flex; justify-content: space-between; align-items: start; gap: 18px; margin: 24px 0 14px; }
+.video-detail-title { margin: 0; color: var(--edu-navy); font-size: clamp(24px, 3vw, 34px); letter-spacing: -.035em; }
+.video-detail-lead { margin: 7px 0 0; color: var(--edu-muted); font-size: 14px; }
+.course-status-chip { white-space: nowrap; padding: 7px 10px; border-radius: 999px; color: #15803D; background: #DCFCE7; font-size: 10px; font-weight: 800; }
+.video-detail-meta { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; border-top: 1px solid var(--edu-border); border-bottom: 1px solid var(--edu-border); }
+.video-detail-author { display: flex; align-items: center; gap: 10px; }
+.video-detail-stats, .video-detail-insights small { color: var(--edu-muted); font-size: 12px; }
+.video-detail-insights { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 18px 0; }
+.video-detail-insights span { padding: 13px 14px; border: 1px solid var(--edu-border); border-radius: 10px; background: var(--edu-white); }
+.video-detail-insights strong, .video-detail-insights small { display: block; }
+.video-detail-insights strong { color: var(--edu-navy); font-size: 15px; }
+.video-detail-insights small { margin-top: 4px; font-size: 10px; }
+.rating-box { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; margin: 16px 0; padding: 14px 16px; border: 1px solid #FDE68A; border-radius: 10px; background: #FFFBEB; }
+.rating-label, .rating-average { color: #92400E; font-size: 12px; font-weight: 700; }
+.star { cursor: pointer; font-size: 21px; }
+.video-description { margin: 0; color: #475569; line-height: 1.75; }
+.quiz-card { border-color: #BFDBFE; background: linear-gradient(145deg, #EFF6FF, #FFFFFF); }
+.quiz-card h3, .comments-title { color: var(--edu-navy); }
+.quiz-intro { color: var(--edu-muted); }
+.quiz-option.selected { border-color: #93C5FD; color: var(--edu-blue); background: #EFF6FF; }
+.quiz-result { border-radius: 10px; color: #1D4ED8; background: #DBEAFE; }
+.playlist-sommaire { position: sticky; top: 92px; }
+.playlist-sommaire h3 { color: var(--edu-navy); }
+.playlist-sommaire-count { color: var(--edu-muted); font-size: 12px; }
+.playlist-sommaire-item { border-color: var(--edu-border); }
+.playlist-sommaire-item:hover, .playlist-sommaire-item.current { border-color: #93C5FD; background: #EFF6FF; }
+.playlist-sommaire-title { color: var(--edu-text); }
+.comment-item { border-bottom-color: var(--edu-border); }
+.comment-content { color: #475569; }
+@media (max-width: 900px) { .video-detail-layout { grid-template-columns: 1fr; } .playlist-sommaire { position: static; } }
+@media (max-width: 600px) { .video-detail-heading, .video-detail-meta { align-items: flex-start; flex-direction: column; } .video-detail-insights { grid-template-columns: 1fr; } }
