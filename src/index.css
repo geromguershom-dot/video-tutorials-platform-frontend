@@ -2119,3 +2119,18 @@ body { background-image: radial-gradient(circle at 8% 6%, rgba(249,115,22,.08), 
 .scroll-character-caption { z-index: 2; color: #111111; background: rgba(255,255,255,.92); border-color: rgba(249,115,22,.5); box-shadow: 0 8px 18px rgba(17,17,17,.12); }
 @media (max-width: 900px) { .scroll-character { opacity: 1 !important; width: min(28vw, 260px); } }
 @media (max-width: 520px) { .scroll-character { opacity: 1 !important; width: 170px; right: -8px; } }
+
+/* HERO REFERENCE COMPOSITION — PANELS BEHIND TITLE */
+.hero-with-image { position: relative; display: block; min-height: 520px; padding: 44px 48px; overflow: visible; }
+.hero-with-image .hero-content { position: relative; z-index: 6; width: 52%; max-width: 560px; }
+.hero-title-stage { padding-top: 10px; }
+.hero-composition { position: absolute; z-index: 2; top: 50%; right: 28px; width: 58%; max-width: 690px; margin: 0; transform: translateY(-50%); }
+.hero-showcase { min-height: 430px; }
+.hero-panel-grid { position: relative; z-index: 2; }
+.hero-image-panel { position: relative; z-index: 2; }
+.scroll-character { z-index: 1 !important; opacity: 1 !important; filter: saturate(1.08) contrast(1.04) drop-shadow(0 24px 36px rgba(17,17,17,.18)) !important; }
+.scroll-character-frame { filter: none !important; mix-blend-mode: normal !important; opacity: 0 !important; }
+.scroll-character-frame.is-active { opacity: 1 !important; }
+.hero-title-backdrop { display: none !important; }
+@media (max-width: 900px) { .hero-with-image { min-height: 760px; padding: 34px 28px; } .hero-with-image .hero-content { width: 100%; max-width: 600px; } .hero-composition { position: relative; top: auto; right: auto; width: 100%; max-width: none; margin-top: 86px; transform: none; } }
+@media (max-width: 520px) { .hero-with-image { min-height: 700px; padding: 28px 20px; } .hero-composition { margin-top: 68px; } }
