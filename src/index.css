@@ -1652,3 +1652,29 @@ body { font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSyst
 .teacher-empty-state p { margin: 7px 0 18px; color: var(--edu-muted); font-size: 12px; }
 @media (max-width: 900px) { .teacher-stat-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 600px) { .teacher-dashboard-hero { align-items: flex-start; flex-direction: column; } .teacher-stat-grid { grid-template-columns: 1fr; } }
+
+/* EDUTECH PREMIUM — PLAYLISTS & EMPTY STATES */
+.playlists-hero { display: flex; justify-content: space-between; align-items: center; gap: 22px; padding: 28px 32px; border: 1px solid #BBF7D0; border-radius: 18px; background: linear-gradient(120deg, #F0FDF4, #FFFFFF 72%); box-shadow: var(--edu-shadow); }
+.playlists-hero h2 { margin: 9px 0 6px; color: var(--edu-navy); font-size: 30px; letter-spacing: -.04em; }
+.playlists-hero p, .page-helper { color: var(--edu-muted); font-size: 13px; }
+.playlist-hero-count { display: flex; align-items: center; gap: 10px; padding: 13px 16px; border-radius: 12px; background: var(--edu-white); box-shadow: 0 5px 18px rgba(15,23,42,.07); }
+.playlist-hero-count strong { color: var(--edu-success); font-size: 28px; }
+.playlist-hero-count span { color: var(--edu-muted); font-size: 10px; line-height: 1.3; }
+.page-header-row { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin: 28px 0 18px; }
+.page-header-row h2 { margin: 0; color: var(--edu-navy); }
+.page-header-row p { margin: 5px 0 0; }
+.playlist-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+.playlist-card { padding: 20px; border-radius: 14px; }
+.playlist-card-head { display: flex; justify-content: space-between; align-items: center; }
+.playlist-icon { display: grid; place-items: center; width: 38px; height: 38px; border-radius: 10px; background: #EFF6FF; }
+.playlist-status { color: var(--edu-success); font-size: 9px; font-weight: 900; letter-spacing: .08em; }
+.playlist-card h3 { margin: 16px 0 6px; color: var(--edu-navy); }
+.playlist-desc { min-height: 34px; color: var(--edu-muted); font-size: 12px; }
+.playlist-count { margin: 14px 0; color: var(--edu-muted); font-size: 11px; }
+.playlist-count strong { color: var(--edu-blue); font-size: 16px; }
+.playlist-videos { display: flex; flex-wrap: wrap; gap: 6px; }
+.playlist-videos .tag { border: 1px solid #BFDBFE; color: var(--edu-blue); background: #EFF6FF; }
+.empty-state-card, .empty-state { padding: 40px 24px; border: 1px dashed #CBD5E1; border-radius: 14px; text-align: center; background: var(--edu-white); }
+.empty-state-icon { display: block; margin-bottom: 10px; font-size: 28px; }
+.empty-state-card h2, .empty-state h2 { color: var(--edu-navy); }
+@media (max-width: 680px) { .playlists-hero, .page-header-row { align-items: flex-start; flex-direction: column; } .playlist-grid { grid-template-columns: 1fr; } }
