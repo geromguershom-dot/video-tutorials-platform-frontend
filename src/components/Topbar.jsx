@@ -13,7 +13,7 @@ export default function Topbar() {
   return (
     <header className="topbar">
       <Link className="topbar-brand" to="/"><span>✦</span><strong>DEVLEARN</strong><small>NEXT GEN LEARNING</small></Link>
-      <nav className="topbar-nav"><Link to="/">Explore</Link>{user?.role === 'student' && <Link to="/dashboard">My Learning</Link>}<Link to="/forum">Community</Link></nav>
+      <nav className="topbar-nav"><Link to="/">Explore</Link>{user?.role === 'student' && <><Link to="/dashboard">My Learning</Link><Link to="/playlists">Playlists</Link></>}{(user?.role === 'teacher' || user?.role === 'admin') && <Link to="/teacher-dashboard">Creator Studio</Link>}<Link to="/forum">Community</Link></nav>
       <input
         type="text"
         placeholder="Rechercher des vidéos, cours, catégories..."

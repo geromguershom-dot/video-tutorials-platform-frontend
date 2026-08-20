@@ -1860,3 +1860,13 @@ body { background-image: radial-gradient(circle at 14% 8%, rgba(124,58,237,.09),
 @keyframes titleEdgeGlow { 0%, 100% { opacity: .55; } 50% { opacity: 1; } }
 @media (max-width: 800px) { .hero-title-backdrop { left: -18px; width: calc(100% + 36px); } }
 @media (prefers-reduced-motion: reduce) { .hero-title-backdrop::after { animation: none; } }
+
+/* NEXT GENERATION — NAVIGATION & QUIZ SPOTLIGHT */
+.topbar-nav a { position: relative; padding: 10px 0; }
+.topbar-nav a::after { position: absolute; right: 0; bottom: 1px; left: 0; height: 1px; content: ''; background: linear-gradient(90deg, var(--ng-cyan), var(--ng-purple-light)); opacity: 0; transform: scaleX(.4); transition: opacity .2s, transform .2s; }
+.topbar-nav a:hover::after { opacity: 1; transform: scaleX(1); }
+.quiz-card { position: relative; overflow: hidden; }
+.quiz-card::before { position: absolute; top: -80px; right: -45px; width: 180px; height: 180px; content: ''; border: 1px solid rgba(34,211,238,.28); border-radius: 50%; box-shadow: 0 0 35px rgba(34,211,238,.16); pointer-events: none; }
+.quiz-card::after { position: absolute; top: 18px; right: 20px; content: 'ACTIVE LEARNING'; color: rgba(34,211,238,.68); font-size: 8px; font-weight: 900; letter-spacing: .15em; pointer-events: none; }
+.quiz-heading { position: relative; z-index: 1; }
+.quiz-progress { padding: 6px 9px; border: 1px solid rgba(34,211,238,.3); border-radius: 999px; color: var(--ng-cyan); background: rgba(34,211,238,.08); font-size: 9px; font-weight: 900; }
