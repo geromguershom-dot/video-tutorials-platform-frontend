@@ -1763,9 +1763,9 @@ body { font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSyst
 @media (max-width: 520px) { .hero-panel-grid { gap: 5px; transform: none; } .hero-image-panel { border-radius: 7px; } .hero-image-panel.panel-tall, .hero-image-panel.panel-small { height: 210px; } .hero-image-panel.panel-main { height: 260px; } .hero-showcase-metrics span { min-width: 58px; padding: 4px; } }
 
 /* NEXT GENERATION — DARK SAAS SYSTEM */
-:root { --ng-black: #09090B; --ng-surface: #18181B; --ng-surface-2: #27272A; --ng-purple: #7C3AED; --ng-purple-light: #A78BFA; --ng-cyan: #22D3EE; --ng-white: #FAFAFA; --ng-muted: #A1A1AA; --ng-line: rgba(167,139,250,.18); }
+:root { --ng-black: #080A0F; --ng-surface: #11141B; --ng-surface-2: #171B24; --ng-purple: #7C3AED; --ng-purple-light: #A78BFA; --ng-cyan: #22D3EE; --ng-white: #F8FAFC; --ng-muted: #94A3B8; --ng-success: #22C55E; --ng-warning: #F59E0B; --ng-line: rgba(167,139,250,.16); }
 html, body { background: var(--ng-black); color: var(--ng-white); }
-body { background-image: radial-gradient(circle at 14% 8%, rgba(124,58,237,.09), transparent 26%), radial-gradient(circle at 84% 12%, rgba(34,211,238,.06), transparent 24%); }
+body { background-image: radial-gradient(circle at 14% 8%, rgba(124,58,237,.07), transparent 24%), radial-gradient(circle at 84% 12%, rgba(34,211,238,.045), transparent 22%); }
 .app-shell, .main-area { background: transparent; }
 .sidebar { width: 238px; padding: 20px 14px; background: rgba(24,24,27,.9); border-right: 1px solid var(--ng-line); box-shadow: 12px 0 40px rgba(0,0,0,.22); }
 .sidebar-logo { color: var(--ng-white); letter-spacing: .04em; text-shadow: 0 0 20px rgba(34,211,238,.3); }
