@@ -1875,3 +1875,19 @@ body { background-image: radial-gradient(circle at 14% 8%, rgba(124,58,237,.07),
 .hero-highlight { background: none; color: var(--ng-cyan); -webkit-text-fill-color: currentColor; text-shadow: 0 0 18px rgba(34,211,238,.22); }
 .hero-title-stage .hero-title { max-width: 540px; font-size: clamp(36px, 5vw, 62px); line-height: 1.05; }
 .hero-title-stage .hero-subtitle { max-width: 430px; color: var(--ng-muted); }
+
+/* NEXT GENERATION — HOMEPAGE HIERARCHY */
+.home-page { display: flex; flex-direction: column; gap: 0; }
+.home-page > .hero { order: 1; }
+.home-page > .trust-row { order: 2; margin-top: 32px; margin-bottom: 0; }
+.home-page > .home-layout { order: 3; margin-top: 58px; }
+.home-page > .learning-story-section { order: 4; margin-top: 92px; }
+.home-page > .platform-stats-section { order: 5; margin-top: 72px; }
+.home-page > .testimonials-section { order: 6; margin-top: 92px; }
+.home-page > .home-cta-section { order: 7; margin-top: 92px; margin-bottom: 42px; }
+.home-layout .section-header { margin-bottom: 28px; }
+.category-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+.category-card { min-height: 96px; padding: 15px; border-radius: 14px; }
+.category-card h3 { font-size: 13px; }
+.category-card p { margin-top: 5px; font-size: 10px; }
+@media (max-width: 760px) { .home-page > .home-layout, .home-page > .learning-story-section, .home-page > .testimonials-section { margin-top: 58px; } .category-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
