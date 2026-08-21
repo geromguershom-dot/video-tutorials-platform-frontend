@@ -2224,3 +2224,11 @@ label, .form-label, .field-label { color: #171B24 !important; }
   .hero-with-image .hero-title { font-size: clamp(42px, 7vw, 76px) !important; line-height: .96; }
   .hero-with-image .hero-subtitle { max-width: 620px; }
 }
+
+/* SAFE TABLET / SMALL LAPTOP STACK */
+@media (max-width: 1280px) {
+  .hero-with-image { display: flex !important; flex-direction: column !important; align-items: stretch; min-height: auto !important; padding-bottom: 42px; }
+  .hero-with-image .hero-composition { order: 1; position: relative !important; inset: auto !important; transform: none !important; width: 100% !important; margin: 0 auto 24px !important; }
+  .hero-with-image .hero-content { order: 2; position: relative !important; width: 100% !important; max-width: 760px; padding: 0 8px !important; margin: 0 auto; }
+  .hero-with-image .hero-showcase-title, .hero-with-image .hero-showcase-metrics { display: none; }
+}
