@@ -2213,3 +2213,14 @@ label, .form-label, .field-label { color: #171B24 !important; }
   .hero-with-image .hero-actions .btn { width: 100%; justify-content: center; }
   .hero-with-image .hero-student-backdrop { left: 24%; width: 58%; height: 32%; }
 }
+
+/* INTERMEDIATE HERO HIERARCHY — NO OVERLAP */
+@media (max-width: 1000px) {
+  .hero-with-image { display: flex !important; flex-direction: column !important; align-items: stretch; min-height: auto !important; padding-bottom: 42px; }
+  .hero-with-image .hero-composition { order: 1; position: relative !important; inset: auto !important; transform: none !important; width: 100% !important; margin: 0 auto 24px !important; }
+  .hero-with-image .hero-content { order: 2; position: relative !important; width: 100% !important; max-width: 720px; padding: 0 8px !important; margin: 0 auto; }
+  .hero-with-image .hero-showcase-title { display: none; }
+  .hero-with-image .hero-showcase-metrics { display: none; }
+  .hero-with-image .hero-title { font-size: clamp(42px, 7vw, 76px) !important; line-height: .96; }
+  .hero-with-image .hero-subtitle { max-width: 620px; }
+}
