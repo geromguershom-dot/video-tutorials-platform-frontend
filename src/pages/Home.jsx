@@ -121,9 +121,18 @@ export default function Home() {
         ))}
       </div>
 
-      <section className="learning-story-section">
-        <div className="section-heading-centered"><span className="hero-badge">UNE MÉTHODE SIMPLE</span><h2>Apprends avec un parcours qui te ressemble.</h2><p>DevLearn relie contenu, pratique et accompagnement dans une expérience fluide.</p></div>
-        <div className="learning-steps"><div className="learning-step"><span>01</span><strong>Choisis ton objectif</strong><p>Explore les catégories et trouve le tutoriel adapté à ton niveau.</p></div><div className="learning-step"><span>02</span><strong>Apprends à ton rythme</strong><p>Regarde les vidéos, réponds aux quiz et reprends là où tu t’es arrêté.</p></div><div className="learning-step"><span>03</span><strong>Progresse en communauté</strong><p>Pose tes questions et échange avec les enseignants et les autres étudiants.</p></div></div>
+      <section className={`learning-story-section ${user?.role === 'teacher' ? 'teacher-story-section' : ''}`}>
+        {user?.role === 'teacher' ? (
+          <>
+            <div className="section-heading-centered"><span className="hero-badge">STUDIO ENSEIGNANT</span><h2>Partage, suis et accompagne tes élèves.</h2><p>DevLearn aide les enseignants à transformer leur expertise en parcours utiles et mesurables.</p></div>
+            <div className="learning-steps"><div className="learning-step"><span>01</span><strong>Publie ton expertise</strong><p>Crée des tutoriels clairs et rends tes connaissances accessibles à toute l’école.</p></div><div className="learning-step"><span>02</span><strong>Suis l’impact</strong><p>Observe les vues, la progression et les retours des étudiants sur tes cours.</p></div><div className="learning-step"><span>03</span><strong>Réponds aux besoins</strong><p>Réponds aux questions, valide les bonnes réponses et accompagne chaque apprenant.</p></div></div>
+          </>
+        ) : (
+          <>
+            <div className="section-heading-centered"><span className="hero-badge">UNE MÉTHODE SIMPLE</span><h2>Apprends avec un parcours qui te ressemble.</h2><p>DevLearn relie contenu, pratique et accompagnement dans une expérience fluide.</p></div>
+            <div className="learning-steps"><div className="learning-step"><span>01</span><strong>Choisis ton objectif</strong><p>Explore les catégories et trouve le tutoriel adapté à ton niveau.</p></div><div className="learning-step"><span>02</span><strong>Apprends à ton rythme</strong><p>Regarde les vidéos, réponds aux quiz et reprends là où tu t’es arrêté.</p></div><div className="learning-step"><span>03</span><strong>Progresse en communauté</strong><p>Pose tes questions et échange avec les enseignants et les autres étudiants.</p></div></div>
+          </>
+        )}
       </section>
 
       <section className="platform-stats-section"><div><strong>{Math.max(500, videos.length * 20)}+</strong><span>cours disponibles</span></div><div><strong>{Math.max(50, visibleCategories.length * 8)}+</strong><span>enseignants passionnés</span></div><div><strong>{studentCount.toLocaleString()}+</strong><span>étudiants actifs</span></div><div><strong>4.9/5</strong><span>expérience moyenne</span></div></section>
