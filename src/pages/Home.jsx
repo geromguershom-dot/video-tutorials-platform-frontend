@@ -62,51 +62,29 @@ export default function Home() {
   return (
     <div className="home-page">
       {/* HERO */}
-        <div className="hero hero-with-image">
+        <div className="hero hero-with-image hero-clean-layout">
           <div className="hero-student-backdrop" aria-hidden="true"><img src={studentLaughing} alt="" /></div>
-                <div className="hero-content hero-title-stage">
-          <span className="hero-badge">
-{user?.role === 'teacher' ? '✦ ESPACE CRÉATEUR' : '🎓 PLATEFORME D\'APPRENTISSAGE'}</span>
-          <h1 className="hero-title">
-            {user?.role === 'teacher' ? 'Partagez. Enseignez.' : 'Apprenez. Partagez.'}
-            <br />
-            <span className="hero-highlight">{user?.role === 'teacher' ? 'Inspirez une communauté.' : 'Progressez ensemble.'}</span>
-          </h1>
-          <p className="hero-subtitle">
-            {user?.role === 'teacher' ? 'Publiez vos connaissances, accompagnez vos étudiants et mesurez l’impact de vos tutoriels.' : 'Des vidéos de qualité, des enseignants passionnés, une communauté qui vous fait grandir.'}
-          </p>
-          <div className="hero-actions">
-            <button
-              className="btn"
-              onClick={() =>
-                document.getElementById('videos-section').scrollIntoView({ behavior: 'smooth' })
-              }
-            >
-              {user?.role === 'teacher' ? '⬆ Publier un tutoriel' : '▶ Explorer les vidéos'}
-            </button>
-            {user?.role === 'teacher' ? <Link className="btn btn-outline" to="/upload">📊 Voir mon espace</Link> : <button
-              className="btn btn-outline"
-              onClick={() =>
-                document
-                  .getElementById('categories-section')
-                  .scrollIntoView({ behavior: 'smooth' })
-              }
-            >
-              ⊞ Voir les catégories
-            </button>}
+          <div className="hero-copy-column">
+            <div className="hero-content hero-title-stage">
+              <span className="hero-badge">{user?.role === 'teacher' ? '✦ ESPACE CRÉATEUR' : '🎓 PLATEFORME D\'APPRENTISSAGE'}</span>
+              <h1 className="hero-title">{user?.role === 'teacher' ? 'Partagez. Enseignez.' : 'Apprenez. Partagez.'}<br /><span className="hero-highlight">{user?.role === 'teacher' ? 'Inspirez une communauté.' : 'Progressez ensemble.'}</span></h1>
+              <p className="hero-subtitle">{user?.role === 'teacher' ? 'Publiez, suivez l’impact et répondez aux besoins des élèves.' : 'Des tutoriels clairs, des quiz utiles et une progression visible.'}</p>
+              <div className="hero-actions">
+                <button className="btn" onClick={() => document.getElementById('videos-section').scrollIntoView({ behavior: 'smooth' })}>{user?.role === 'teacher' ? '⬆ Publier un tutoriel' : '▶ Explorer les vidéos'}</button>
+                {user?.role === 'teacher' ? <Link className="btn btn-outline" to="/upload">📊 Voir mon espace</Link> : <button className="btn btn-outline" onClick={() => document.getElementById('categories-section').scrollIntoView({ behavior: 'smooth' })}>⊞ Voir les catégories</button>}
+              </div>
+            </div>
+          </div>
+          <div className="hero-visual-column">
+            <div className="hero-illustration hero-composition hero-showcase">
+              <div className="hero-panel-grid">
+                <div className="hero-image-panel panel-tall"><img src={studentFocused} alt="Étudiante concentrée" /><span>01 · FOCUS</span></div>
+                <div className="hero-image-panel panel-main"><img src={studentLaughing} alt="Étudiante en apprentissage" /><div className="hero-panel-play">▶</div><span>▶ LEARNING PREVIEW</span></div>
+                <div className="hero-image-panel panel-small"><img src={studentConfident} alt="Étudiante confiante" /><span>02 · COMMUNITY</span></div>
+              </div>
+            </div>
           </div>
         </div>
-                  <div className="hero-illustration hero-composition hero-showcase">
-            <div className="hero-showcase-title"><span>{user?.role === 'teacher' ? 'TEACH. INSPIRE.' : 'LEARN. BUILD.'}</span><strong>{user?.role === 'teacher' ? 'Une expertise qui rayonne.' : 'Des compétences qui prennent vie.'}</strong></div>
-            <div className="hero-panel-grid">
-              <div className="hero-image-panel panel-tall"><img src={studentFocused} alt="Étudiante concentrée" /><span>01 · FOCUS</span></div>
-              <div className="hero-image-panel panel-main"><img src={studentLaughing} alt="Étudiante en apprentissage" /><div className="hero-panel-play">▶</div><span>▶ LEARNING PREVIEW</span></div>
-              <div className="hero-image-panel panel-small"><img src={studentConfident} alt="Étudiante confiante" /><span>02 · COMMUNITY</span></div>
-            </div>
-            <div className="hero-showcase-metrics"><span><strong>{featuredPercent}%</strong><small>{user?.role === 'teacher' ? 'impact du cours' : 'progression'}</small></span><span><strong>{studentCount}+</strong><small>apprenants actifs</small></span><span><strong>4.9</strong><small>note moyenne</small></span></div>
-          </div>
-
-      </div>
 
       {/* TRUST POINTS */}
       <div className="trust-row">
