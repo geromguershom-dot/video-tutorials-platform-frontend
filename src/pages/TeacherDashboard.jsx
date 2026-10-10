@@ -12,10 +12,14 @@ export default function TeacherDashboard() {
     api.get('/videos').then((res) => setVideos(res.data || [])).finally(() => setLoading(false));
   }, []);
 
+  const myVideos = useMemo(() => {
+    if (!user?._id) return [];
+    return videos.filter((video) => !video.teacher?._id || video.teacher?._id === user._id);
+  }, [videos, user?._id]);
+
   if (!user) return <Navigate to="/login" replace />;
   if (user.role !== 'teacher' && user.role !== 'admin') return <Navigate to="/dashboard" replace />;
 
-  const myVideos = useMemo(() => videos.filter((video) => !video.teacher?._id || video.teacher?._id === user._id), [videos, user._id]);
   const totalViews = myVideos.reduce((sum, video) => sum + (video.views || 0), 0);
   const averageRating = myVideos.length ? (myVideos.reduce((sum, video) => sum + (video.averageRating || 0), 0) / myVideos.length).toFixed(1) : '—';
   const reach = Math.max(0, Math.round(totalViews * 1.8));
