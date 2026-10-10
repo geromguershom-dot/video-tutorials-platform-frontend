@@ -17,7 +17,8 @@ export default function Sidebar() {
   return (
     <aside className="sidebar">
       <Link className="sidebar-logo" to="/">
-        <span className="logo-icon">▶</span> DevLearn
+        <img className="brand-logo-image sidebar-brand-logo" src="/devlearn-logo.png" alt="DEVLEARN" />
+        <span>DEVLEARN</span>
       </Link>
 
       <nav className="sidebar-nav">

@@ -2250,3 +2250,46 @@ label, .form-label, .field-label { color: #171B24 !important; }
 .hero-clean-layout .hero-subtitle { max-width: 480px; }
 @media (max-width: 1100px) { .hero-clean-layout { grid-template-columns: 1fr; gap: 22px; min-height: auto; } .hero-clean-layout .hero-visual-column { order: 1; } .hero-clean-layout .hero-copy-column { order: 2; } .hero-clean-layout .hero-content { max-width: 760px; margin: 0 auto; } .hero-clean-layout .hero-panel-grid { height: 330px; } .hero-clean-layout .hero-image-panel.panel-tall { height: 275px !important; } .hero-clean-layout .hero-image-panel.panel-main { height: 335px !important; } .hero-clean-layout .hero-image-panel.panel-small { height: 245px !important; } }
 @media (max-width: 560px) { .hero-clean-layout { display: flex !important; flex-direction: column; gap: 14px; padding: 18px 14px 34px !important; } .hero-clean-layout .hero-visual-column { order: 1; } .hero-clean-layout .hero-copy-column { order: 2; } .hero-clean-layout .hero-panel-grid { height: 225px; gap: 5px; } .hero-clean-layout .hero-image-panel.panel-tall { height: 185px !important; } .hero-clean-layout .hero-image-panel.panel-main { height: 220px !important; } .hero-clean-layout .hero-image-panel.panel-small { height: 168px !important; } .hero-clean-layout .hero-title { font-size: clamp(31px, 10vw, 46px) !important; line-height: .98; } .hero-clean-layout .hero-subtitle { display: none; } .hero-clean-layout .hero-actions { flex-direction: column; } }
+
+
+/* DEVLEARN BRAND LOGO */
+.brand-logo-image {
+  display: block;
+  flex: 0 0 auto;
+  object-fit: contain;
+  object-position: center;
+  background: transparent;
+}
+
+.sidebar-brand-logo {
+  width: 34px;
+  height: 34px;
+}
+
+.topbar-brand-logo {
+  width: 28px;
+  height: 28px;
+}
+
+.auth-brand-logo {
+  width: 42px;
+  height: 42px;
+}
+
+.sidebar-logo,
+.topbar-brand,
+.auth-logo {
+  align-items: center;
+}
+
+@media (max-width: 640px) {
+  .sidebar-brand-logo {
+    width: 30px;
+    height: 30px;
+  }
+
+  .topbar-brand-logo {
+    width: 25px;
+    height: 25px;
+  }
+}

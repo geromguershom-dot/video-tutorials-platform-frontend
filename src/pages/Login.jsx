@@ -32,7 +32,8 @@ export default function Login() {
       <ScrollCharacter variant="student" label="Illustration animée d’une étudiante" />
       <div className="auth-box">
         <div className="auth-logo">
-          <span className="logo-icon">▶</span> DevLearn
+          <img className="brand-logo-image auth-brand-logo" src="/devlearn-logo.png" alt="DEVLEARN" />
+          <span>DEVLEARN</span>
         </div>
         <h2 className="auth-title">Content de vous revoir</h2>
         <p className="auth-subtitle">Connectez-vous pour continuer votre apprentissage</p>

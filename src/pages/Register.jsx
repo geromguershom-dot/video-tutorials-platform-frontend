@@ -34,7 +34,8 @@ export default function Register() {
       <ScrollCharacter variant="student" label="Illustration animée d’une étudiante" />
       <div className="auth-box">
         <div className="auth-logo">
-          <span className="logo-icon">▶</span> DevLearn
+          <img className="brand-logo-image auth-brand-logo" src="/devlearn-logo.png" alt="DEVLEARN" />
+          <span>DEVLEARN</span>
         </div>
         <h2 className="auth-title">Créer un compte</h2>
         <p className="auth-subtitle">Rejoignez la communauté et commencez à apprendre</p>
